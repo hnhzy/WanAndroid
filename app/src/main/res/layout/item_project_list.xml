@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_220"
+    android:layout_margin="@dimen/dp_10"
+    android:background="@drawable/shape_solid_white_corner10"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:id="@+id/imv_project"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_200"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/icon_login_bg" />
+
+    <TextView
+        android:id="@+id/tv_project_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imv_project"
+        android:padding="@dimen/dp_10"
+        android:singleLine="true"
+        android:text="WanAdnroid练手项目"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_project_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_project_name"
+        android:layout_toRightOf="@+id/imv_project"
+        android:lineSpacingExtra="@dimen/dp_5"
+        android:maxLines="6"
+        android:padding="@dimen/dp_10"
+        android:text="Retrofit+LiveData 封装网络请求，DrawerLayout+BottomNavigationView+Fragment 实现侧边栏加底部导航的App整体结构，SwipeRefreshLayout+BaseQuickAdapter实现列表"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp_12" />
+
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_toRightOf="@+id/imv_project"
+        android:text="2019-01-01"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp_12" />
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_toRightOf="@+id/tv_time"
+        android:text="hzy"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp_12" />
+
+
+    <ImageView
+        android:id="@+id/imv_like"
+        android:layout_width="@dimen/dp_25"
+        android:layout_height="@dimen/dp_25"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_unlike" />
+
+
+</RelativeLayout>

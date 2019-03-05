@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imv_like"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginStart="@dimen/dp_10"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_unlike"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_weight="1"
+        android:padding="@dimen/dp_10"
+        android:text="作者：hzy"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintLeft_toRightOf="@+id/imv_like"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_chapterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="分类：四大组件/handler"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:lineSpacingExtra="@dimen/dp_3"
+        android:text="Android Handler: 手把手带你深入分析Handler机制源码gsgsgadsaghshdfahdfhfdhdfhdf"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/imv_like"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_toEndOf="@id/imv_like"
+        android:padding="@dimen/dp_10"
+        android:text="时间：14小时之前"
+        android:textColor="@color/c_666666"
+        app:layout_constraintLeft_toRightOf="@+id/imv_like"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:background="@drawable/shape_tag_red_background_normal"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_2"
+        android:paddingRight="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_2"
+        android:text="新"
+        android:textColor="@color/c_f9382a"
+        android:visibility="visible"
+        app:layout_constraintRight_toLeftOf="@+id/tv_project"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:background="@drawable/shape_tag_green_background"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_2"
+        android:paddingRight="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_2"
+        android:text="项目"
+        android:textColor="@color/c_3fc75f"
+        android:visibility="visible"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <View
+        style="@style/horizontal_line"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_project" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_collect"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="我的收藏" />
+        <item
+            android:id="@+id/nav_todo"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="待办清单" />
+        <item
+            android:id="@+id/nav_web"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="常用网站" />
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="常用工具" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_send"
+            android:title="退出登录" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="分享" />
+
+        <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="赞助本站" />
+    </group>
+
+</menu>

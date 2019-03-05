@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/design_tab_max_width</item>
+        <item name="tabIndicatorColor">#FFFFFF</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+
+
+    <style name="tab_radio_button_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/selector_tab_color</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:width">0dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="horizontal_line">
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/c_dedede</item>
+    </style>
+
+</resources>

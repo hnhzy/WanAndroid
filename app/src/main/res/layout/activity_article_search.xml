@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_f0f0f0"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/c_6c8cff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/dp_10"
+            android:src="@mipmap/ic_common_back" />
+
+        <com.hzy.wanandroid.widget.ClearEditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_solid_white_corner555_line"
+            android:drawableLeft="@mipmap/icon_search_right"
+            android:drawablePadding="10dp"
+            android:hint="请在上个页面选择公众号，然后在输入需要搜索的内容"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="15dp"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_f2f2f2"
+        app:srlAccentColor="@color/white"
+        app:srlEnableAutoLoadMore="false"
+        app:srlEnablePreviewInEditMode="true"
+        app:srlPrimaryColor="@color/c_444444">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:text="大家都在搜"
+                    android:textColor="@color/c_666666"
+                    android:textSize="@dimen/dp_14" />
+
+                <View style="@style/horizontal_line" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:text="已经到底啦"
+                    android:textColor="@color/c_999999"
+                    android:textSize="@dimen/sp_16"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

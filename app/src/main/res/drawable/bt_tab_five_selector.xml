@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--选中时的图片背景-->
+    <item android:drawable="@drawable/wd_b" android:state_selected="true" />
+    <item android:drawable="@drawable/wd_b" android:state_checked="true" />
+    <item android:drawable="@drawable/wd_a"></item>
+</selector>
