@@ -1,6 +1,7 @@
 package com.hzy.wanandroid;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.alertview.AlertView;
-import com.bigkoo.alertview.OnItemClickListener;
 import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.adapter.ViewPagerAdapter;
 import com.hzy.wanandroid.base.mvc.BaseActivity;
@@ -118,25 +118,27 @@ public class MainActivity extends BaseActivity
         mBtNavi.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_home:
-                    NaviTab(0);
+                    naviTab(0);
                     break;
                 case R.id.action_project:
-                    NaviTab(1);
+                    naviTab(1);
                     break;
                 case R.id.action_system:
-                    NaviTab(2);
+                    naviTab(2);
                     break;
                 case R.id.action_navi:
-                    NaviTab(3);
+                    naviTab(3);
                     break;
                 case R.id.action_pub:
-                    NaviTab(4);
+                    naviTab(4);
+                    break;
+                default:
                     break;
             }
             return true;
         });
 
-        mVpMain.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVpMain.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset,
                                        int positionOffsetPixels) {
@@ -145,6 +147,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void onPageSelected(int position) {
+                Log.d("onPageSelected", "onPageSelected:" + position);
                 mBtNavi.getMenu().getItem(position).setChecked(true);
                 toolbar.setTitle(mTitleStrs[position]);
                 //写滑动页面后做的事，使每一个fragmen与一个page相对应
@@ -166,10 +169,10 @@ public class MainActivity extends BaseActivity
     /**
      * 点击Navigation切换Tab
      *
-     * @param position
+     * @param position tab下标
      */
-    private void NaviTab(int position) {
-        mVpMain.setCurrentItem(position);
+    private void naviTab(int position) {
+        mVpMain.setCurrentItem(position, true);
         toolbar.setTitle(mTitleStrs[position]);
     }
 
@@ -179,12 +182,8 @@ public class MainActivity extends BaseActivity
         mUsername.setText((String) SharedPreferencesUtil.getData(Constants.USERNAME, "请登录"));
         ImageLoaderUtil.LoadCircleImage(this, R.drawable.imv_head, mImvHead);
         if (!(Boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
-            mUsername.setOnClickListener(v -> {
-                startActivity(new Intent(this, LoginActivity.class));
-            });
-            mImvHead.setOnClickListener(v -> {
-                startActivity(new Intent(this, LoginActivity.class));
-            });
+            mUsername.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
+            mImvHead.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
         }
     }
 
@@ -193,8 +192,8 @@ public class MainActivity extends BaseActivity
      * onCreateOptionsMenu
      * 创建Menu
      *
-     * @param menu
-     * @return
+     * @param menu menu
+     * @return boolean
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -211,8 +210,8 @@ public class MainActivity extends BaseActivity
      * onOptionsItemSelected
      * Menu内item的选定方法
      *
-     * @param item
-     * @return
+     * @param item item
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -237,11 +236,11 @@ public class MainActivity extends BaseActivity
      * onNavigationItemSelected
      * DrawerLayout内item的选定方法
      *
-     * @param item
-     * @return
+     * @param item item
+     * @return boolean
      */
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_collect:
@@ -302,12 +301,16 @@ public class MainActivity extends BaseActivity
                                             }
                                         });
                                 break;
+                            default:
+                                break;
                         }
                     }).show();
                 } else {
                     goLogin();
                 }
 
+                break;
+            default:
                 break;
         }
 
