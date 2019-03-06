@@ -35,6 +35,7 @@ import com.hzy.wanandroid.ui.freq_web.FreqWebActivity;
 import com.hzy.wanandroid.ui.login.LoginActivity;
 import com.hzy.wanandroid.ui.mycollect.MyCollectActivity;
 import com.hzy.wanandroid.ui.search.SearchActivity;
+import com.hzy.wanandroid.ui.todo.ToDoActivity;
 import com.hzy.wanandroid.utils.ImageLoaderUtil;
 import com.hzy.wanandroid.utils.RxSchedulers;
 import com.hzy.wanandroid.utils.SharedPreferencesUtil;
@@ -156,6 +157,12 @@ public class MainActivity extends BaseActivity
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mUsername.setText((String) SharedPreferencesUtil.getData(Constants.USERNAME, "请登录"));
+    }
+
     /**
      * 点击Navigation切换Tab
      *
@@ -240,12 +247,17 @@ public class MainActivity extends BaseActivity
             case R.id.nav_collect:
                 if ((Boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
                     startActivity(new Intent(this, MyCollectActivity.class));
+                    startActivity(new Intent(this, ToDoActivity.class));
                 } else {
                     goLogin();
                 }
                 break;
             case R.id.nav_todo:
-                ToastUtils.showShort("待办清单");
+                if ((Boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
+                    startActivity(new Intent(this, ToDoActivity.class));
+                } else {
+                    goLogin();
+                }
                 break;
             case R.id.nav_web:
                 startActivity(new Intent(this, FreqWebActivity.class));
@@ -321,6 +333,7 @@ public class MainActivity extends BaseActivity
             long currentTime = System.currentTimeMillis();
             if ((currentTime - exitTime) < 2000) {
                 super.onBackPressed();
+                System.exit(0);
             } else {
                 Toast.makeText(this, R.string.double_click_exit, Toast.LENGTH_SHORT).show();
                 exitTime = currentTime;

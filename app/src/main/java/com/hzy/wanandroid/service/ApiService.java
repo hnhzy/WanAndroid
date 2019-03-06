@@ -13,6 +13,7 @@ import com.hzy.wanandroid.bean.ProjectListBean;
 import com.hzy.wanandroid.bean.PubAddrListBean;
 import com.hzy.wanandroid.bean.PublicAddrBean;
 import com.hzy.wanandroid.bean.SystemDataBean;
+import com.hzy.wanandroid.bean.ToDoPageBean;
 import com.hzy.wanandroid.http.ResponseBean;
 
 import java.util.List;
@@ -304,10 +305,99 @@ public interface ApiService {
 
     //############################7、搜索#####################################################
 
+    /**
+     * 7.1、搜索
+     *
+     * @param page
+     * @param k
+     * @return
+     */
     @FormUrlEncoded
     @POST("/article/query/{page}/json")
     Observable<ResponseBean<ArticleBean>> query(@Path("page") int page,
                                                 @Field("k") String k);
+
+    //############################8、待办清单###################################################
+
+    /**
+     * 1. 新增一个 TODO
+     *
+     * @param title    新增标题（必须）
+     * @param content  新增详情（必须）
+     * @param date     2018-08-01 预定完成时间（不传默认当天，建议传）
+     * @param type     大于0的整数（可选）；
+     * @param priority 大于0的整数（可选）；
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/lg/todo/add/json")
+    Observable<ResponseBean> toDoAdd(@Field("title") String title,
+                                     @Field("content") String content,
+                                     @Field("date") String date,
+                                     @Field("type") int type,
+                                     @Field("priority") int priority);
+
+
+    /**
+     * 2. 更新一个 Todo
+     *
+     * @param id       拼接在链接上，为唯一标识，列表数据返回时，每个todo 都会有个id标识 （必须）
+     * @param title    更新标题 （必须）
+     * @param content  新增详情（必须）
+     * @param date     2018-08-01（必须）
+     * @param status   // 0为未完成，1为完成
+     * @param type
+     * @param priority
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/lg/todo/update/{id}/json")
+    Observable<ResponseBean> toDoUpdate(@Path("id") int id,
+                                        @Field("title") String title,
+                                        @Field("content") String content,
+                                        @Field("date") String date,
+                                        @Field("status") int status,
+                                        @Field("type") int type,
+                                        @Field("priority") int priority);
+
+    /**
+     * 3. 删除一个 Todo
+     *
+     * @param id 拼接在链接上，为唯一标识
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/lg/todo/delete/{id}/json")
+    Observable<ResponseBean> toDoDelete(@Path("id") int id);
+
+
+    /**
+     * 4. 仅更新完成状态Todo
+     *
+     * @param id     拼接在链接上，为唯一标识
+     * @param status 0或1，传1代表未完成到已完成，反之则反之。
+     * @return 只会变更status，未完成->已经完成 or 已经完成->未完成。
+     */
+    @FormUrlEncoded
+    @POST("/lg/todo/done/{id}/json")
+    Observable<ResponseBean> toDoDone(@Path("id") int id,
+                                      @Field("status") int status);
+
+
+    /**
+     * 5. TODO 列表
+     * 页码从1开始，拼接在url 上
+     * status 状态， 1-完成；0未完成; 默认全部展示；
+     * type 创建时传入的类型, 默认全部展示
+     * priority 创建时传入的优先级；默认全部展示
+     * orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；
+     * 注意：page 从1开始
+     *
+     * @param page
+     * @return
+     */
+    @GET("/lg/todo/v2/list/{page}/json")
+    Observable<ResponseBean<ToDoPageBean>> toDoList(@Path("page") int page);
 
 
 }

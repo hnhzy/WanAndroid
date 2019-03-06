@@ -13,6 +13,7 @@ import com.hzy.wanandroid.fragment.project_list.ProjectListFragment;
 import com.hzy.wanandroid.fragment.public_address.PublicAddrFragment;
 import com.hzy.wanandroid.fragment.subsystem.SubSystemFragment;
 import com.hzy.wanandroid.fragment.system.SystemFragment;
+import com.hzy.wanandroid.ui.todo.fragment.ToDoFragment;
 
 import dagger.Component;
 
@@ -37,4 +38,6 @@ public interface FragmentComponent {
     void inject(ProjectListFragment projectListFragment);
 
     void inject(SubSystemFragment subSystemFragment);
+
+    void inject(ToDoFragment toDoFragment);
 }
