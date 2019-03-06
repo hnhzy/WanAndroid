@@ -131,6 +131,8 @@ public class MainActivity extends BaseActivity
                 case R.id.action_pub:
                     NaviTab(4);
                     break;
+                default:
+                    break;
             }
             return true;
         });
