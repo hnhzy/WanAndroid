@@ -146,6 +146,7 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void onPageSelected(int position) {
+                Log.d("onPageSelected", "onPageSelected:" + position);
                 mBtNavi.getMenu().getItem(position).setChecked(true);
                 toolbar.setTitle(mTitleStrs[position]);
                 //写滑动页面后做的事，使每一个fragmen与一个page相对应
@@ -164,7 +165,7 @@ public class MainActivity extends BaseActivity
      * @param position tab下标
      */
     private void naviTab(int position) {
-        mVpMain.setCurrentItem(position);
+        mVpMain.setCurrentItem(position, true);
         toolbar.setTitle(mTitleStrs[position]);
     }
 
@@ -174,12 +175,8 @@ public class MainActivity extends BaseActivity
         mUsername.setText((String) SharedPreferencesUtil.getData(Constants.USERNAME, "请登录"));
         ImageLoaderUtil.LoadCircleImage(this, R.drawable.imv_head, mImvHead);
         if (!(Boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
-            mUsername.setOnClickListener(v -> {
-                startActivity(new Intent(this, LoginActivity.class));
-            });
-            mImvHead.setOnClickListener(v -> {
-                startActivity(new Intent(this, LoginActivity.class));
-            });
+            mUsername.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
+            mImvHead.setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
         }
     }
 
