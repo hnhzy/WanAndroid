@@ -34,14 +34,10 @@ public class ToDoAdapter extends CommonAdapter<ToDoBean> {
             ToastUtils.showShort("imv_up");
         });
         holder.getView(R.id.imv_delete).setOnClickListener(v -> {
-            mPresenter.delete(bean.getId());
+            mPresenter.delete(position, bean.getId());
         });
         holder.getView(R.id.imv_undone).setOnClickListener(v -> {
-            if (bean.getStatus() == 0) {
-                mPresenter.done(bean.getId(), 1);
-            } else {
-                mPresenter.done(bean.getId(), 0);
-            }
+            mPresenter.done(position, bean.getId(), bean.getStatus() == 0 ? 1 : 0);
         });
     }
 }

@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.BarUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.adapter.MyPagerAdapter;
 import com.hzy.wanandroid.base.mvc.BaseActivity;
+import com.hzy.wanandroid.ui.todo.fragment.DoneFragment;
 import com.hzy.wanandroid.ui.todo.fragment.ToDoFragment;
 import com.hzy.wanandroid.widget.TitleBarLayout;
 
@@ -54,7 +55,7 @@ public class ToDoActivity extends BaseActivity {
             if (i == 0) {
                 mFragments.add(ToDoFragment.newInstance(0));
             } else {
-                mFragments.add(ToDoFragment.newInstance(1));
+                mFragments.add(DoneFragment.newInstance(1));
             }
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

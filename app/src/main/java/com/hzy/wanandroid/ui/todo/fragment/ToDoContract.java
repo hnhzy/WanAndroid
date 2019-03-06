@@ -12,13 +12,13 @@ public interface ToDoContract {
 
     interface View extends BaseView{
         void updateList(ToDoPageBean responseBean);
-        void done(ResponseBean responseBean);
-        void delete(ResponseBean responseBean);
+        void delete(int position,ResponseBean responseBean);
+        void done(int position,int status,ResponseBean responseBean);
     }
 
     interface Presenter extends BasePersenter<View>{
         void getList(int page);
-        void delete(int id);
-        void done(int id,int status);
+        void delete(int position,int id);
+        void done(int position,int id,int status);
     }
 }

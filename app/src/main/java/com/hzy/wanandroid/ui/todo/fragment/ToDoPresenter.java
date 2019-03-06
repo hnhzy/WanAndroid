@@ -36,14 +36,14 @@ public class ToDoPresenter extends BasePAV<ToDoContract.View> implements ToDoCon
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int position,int id) {
         App.apiService(ApiService.class)
                 .toDoDelete(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
                     if (responseBean != null) {
-                        mView.delete(responseBean);
+                        mView.delete(position,responseBean);
                     }
                 }, throwable -> {
                     mView.onFail();
@@ -51,14 +51,14 @@ public class ToDoPresenter extends BasePAV<ToDoContract.View> implements ToDoCon
     }
 
     @Override
-    public void done(int id, int status) {
+    public void done(int position,int id, int status) {
         App.apiService(ApiService.class)
                 .toDoDone(id, status)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
                     if (responseBean != null) {
-                        mView.done(responseBean);
+                        mView.done(position,status,responseBean);
                     }
                 }, throwable -> {
                     mView.onFail();

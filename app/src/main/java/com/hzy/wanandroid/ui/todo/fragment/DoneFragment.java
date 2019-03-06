@@ -26,9 +26,9 @@ import butterknife.BindView;
 
 /**
  * Created by hzy on 2019/3/5
- * 待办清单
+ * 已完成清单
  **/
-public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDoContract.View {
+public class DoneFragment extends BaseMvpFragment<ToDoPresenter> implements ToDoContract.View {
 
     public static final String TAG = "ToDoFragment";
     @BindView(R.id.rv_list)
@@ -47,10 +47,10 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
      */
     private List<ToDoBean> list = new ArrayList<>();
 
-    public static ToDoFragment newInstance(int status) {
+    public static DoneFragment newInstance(int status) {
         Bundle bundle = new Bundle();
         bundle.putInt(TAG, status);
-        ToDoFragment fragment = new ToDoFragment();
+        DoneFragment fragment = new DoneFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -119,16 +119,9 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
 
     @Override
     public void done(int position, int status, ResponseBean responseBean) {
-        Log.e(TAG, "done" + responseBean.toString());
         if (responseBean.getErrorCode() == 0)
             ToastUtils.showShort("更新成功");
-        list.get(position).setStatus(status);
-        mList.clear();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getStatus() == status) {
-                mList.add(list.get(i));
-            }
-        }
+        mList.remove(position);
         mAdapter.notifyDataSetChanged();
     }
 
