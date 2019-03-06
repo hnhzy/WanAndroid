@@ -246,7 +246,6 @@ public class MainActivity extends BaseActivity
             case R.id.nav_collect:
                 if ((Boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
                     startActivity(new Intent(this, MyCollectActivity.class));
-                    startActivity(new Intent(this, ToDoActivity.class));
                 } else {
                     goLogin();
                 }

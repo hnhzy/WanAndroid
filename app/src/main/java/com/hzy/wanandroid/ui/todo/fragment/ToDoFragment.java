@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.adapter.ToDoAdapter;
 import com.hzy.wanandroid.base.mvp.BaseMvpFragment;
@@ -112,6 +113,8 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
     @Override
     public void done(ResponseBean responseBean) {
         Log.e(TAG,"done"+responseBean.toString());
+        if(responseBean.getErrorCode()==0)
+            ToastUtils.showShort("更新成功");
     }
 
     @Override
