@@ -25,15 +25,4 @@ public class AppModule {
         return application;
     }
 
-//    @Provides
-//    @Singleton
-//    RetrofitHelper provideRetrofitHelper() {
-//        return new RetrofitHelper();
-//    }
-//
-//    @Provides
-//    @Singleton
-//    RealmHelper provideRealmHelper() {
-//        return new RealmHelper(application);
-//    }
 }

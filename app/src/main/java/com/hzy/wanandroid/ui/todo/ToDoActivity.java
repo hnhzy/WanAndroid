@@ -1,14 +1,18 @@
 package com.hzy.wanandroid.ui.todo;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.adapter.MyPagerAdapter;
 import com.hzy.wanandroid.base.mvc.BaseActivity;
+import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
 import com.hzy.wanandroid.ui.todo.fragment.DoneFragment;
 import com.hzy.wanandroid.ui.todo.fragment.ToDoFragment;
 import com.hzy.wanandroid.widget.TitleBarLayout;
@@ -47,16 +51,15 @@ public class ToDoActivity extends BaseActivity {
         mTitleBar.setTitleColor(getResources().getColor(R.color.c_ffffff));
         mTitleBar.setTitle("我的清单");
         mTitleBar.setLeftBack(v -> finish());
+        mTitleBar.setRightImage(R.drawable.add_icon2, v -> {
+            startActivity(new Intent(this, AddToDoActivity.class));
+        });
     }
 
     @Override
     protected void initData() {
         for (int i = 0; i < mTitles.length; i++) {
-            if (i == 0) {
-                mFragments.add(ToDoFragment.newInstance(0));
-            } else {
-                mFragments.add(DoneFragment.newInstance(1));
-            }
+            mFragments.add(i == 0 ? ToDoFragment.newInstance() : DoneFragment.newInstance());
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
         mAdapter = new MyPagerAdapter(fragmentManager, mFragments, mTitles);

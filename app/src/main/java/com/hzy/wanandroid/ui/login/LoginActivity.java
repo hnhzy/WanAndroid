@@ -20,9 +20,6 @@ import com.hzy.wanandroid.ui.register.RegisterActivity;
 import com.hzy.wanandroid.utils.SharedPreferencesUtil;
 import com.hzy.wanandroid.widget.TitleBarLayout;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 

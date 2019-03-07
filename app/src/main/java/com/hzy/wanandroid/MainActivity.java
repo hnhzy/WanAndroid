@@ -1,5 +1,6 @@
 package com.hzy.wanandroid;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -46,6 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.annotations.Nullable;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -340,6 +342,22 @@ public class MainActivity extends BaseActivity
                 Toast.makeText(this, R.string.double_click_exit, Toast.LENGTH_SHORT).show();
                 exitTime = currentTime;
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (data == null || resultCode != Activity.RESULT_OK) return;
+        switch (requestCode) {
+            case PublicAddrFragment.REQ_CODE:
+                PublicAddrFragment.getInstance(mTitleStrs[4]).onActivityResult(requestCode, resultCode, data);
+                break;
+            case ProjectFragment.REQ_CODE:
+                ProjectFragment.getInstance(mTitleStrs[1]).onActivityResult(requestCode, resultCode, data);
+                break;
+            case SystemFragment.REQ_CODE:
+                SystemFragment.getInstance(mTitleStrs[2]).onActivityResult(requestCode, resultCode, data);
+                break;
         }
     }
 }

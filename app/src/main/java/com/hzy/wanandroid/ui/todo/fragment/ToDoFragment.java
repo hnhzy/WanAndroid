@@ -36,7 +36,7 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
 
     List<ToDoBean> mList = new ArrayList<>();
     ToDoAdapter mAdapter;
-    private int status;
+    private int status=0;
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
@@ -47,12 +47,8 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
      */
     private List<ToDoBean> list = new ArrayList<>();
 
-    public static ToDoFragment newInstance(int status) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(TAG, status);
-        ToDoFragment fragment = new ToDoFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+    public static ToDoFragment newInstance() {
+        return new ToDoFragment();
     }
 
 
@@ -73,7 +69,6 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
         mRvList.setAdapter(mAdapter);
         //禁用滑动事件
         mRvList.setNestedScrollingEnabled(false);
-        status = getArguments().getInt(TAG);
         mRefreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         mRefreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
         mRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -117,23 +112,25 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
         mAdapter.notifyDataSetChanged();
     }
 
+    public void updateItem(ToDoBean bean){
+        mList.add(0,bean);
+        mAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void done(int position, int status, ResponseBean responseBean) {
-        Log.e(TAG, "done" + responseBean.toString());
         if (responseBean.getErrorCode() == 0)
             ToastUtils.showShort("更新成功");
-        list.get(position).setStatus(status);
-        mList.clear();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getStatus() == status) {
-                mList.add(list.get(i));
-            }
-        }
+        DoneFragment.newInstance().updateItem(mList.get(position));
+        mList.remove(position);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void delete(int position, ResponseBean responseBean) {
-        Log.e(TAG, "delete" + responseBean.toString());
+        if (responseBean.getErrorCode() == 0)
+            ToastUtils.showShort("删除成功");
+        mList.remove(position);
+        mAdapter.notifyDataSetChanged();
     }
 }

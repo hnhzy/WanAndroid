@@ -126,6 +126,9 @@ dependencies {
     // 滑动返回 https://github.com/r0adkll/Slidr
     implementation 'com.r0adkll:slidableactivity:2.0.6'
 
+    // 时间选择器  https://github.com/Bigkoo/Android-PickerView
+    implementation 'com.contrarywind:Android-PickerView:4.1.7'
+
     //bugly
 
     //    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'

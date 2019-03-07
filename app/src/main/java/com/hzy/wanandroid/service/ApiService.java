@@ -334,8 +334,7 @@ public interface ApiService {
     Observable<ResponseBean> toDoAdd(@Field("title") String title,
                                      @Field("content") String content,
                                      @Field("date") String date,
-                                     @Field("type") int type,
-                                     @Field("priority") int priority);
+                                     @Field("type") int type);
 
 
     /**
@@ -366,7 +365,6 @@ public interface ApiService {
      * @param id 拼接在链接上，为唯一标识
      * @return
      */
-    @FormUrlEncoded
     @POST("/lg/todo/delete/{id}/json")
     Observable<ResponseBean> toDoDelete(@Path("id") int id);
 

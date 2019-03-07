@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_f0f0f0"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.hzy.wanandroid.widget.TitleBarLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="21dp"
+        android:background="@null"
+        android:drawableLeft="@mipmap/phone"
+        android:drawablePadding="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="请输入标题"
+        android:paddingLeft="2dp"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/black_back"
+        android:textColorHint="@color/c_999999"
+        android:textSize="14sp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/c_999999" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="21dp"
+        android:background="@null"
+        android:drawableLeft="@mipmap/mima"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="请选择时间"
+        android:paddingLeft="2dp"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/black_back"
+        android:textColorHint="@color/c_999999"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="21dp"
+        android:background="@color/c_999999" />
+
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginRight="21dp"
+        android:background="@drawable/shape_solid_white_corner10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="left|top"
+        android:hint="请输入详情（非必填）"
+        android:lines="5"
+        android:padding="@dimen/dp_10"
+        android:paddingLeft="2dp"
+        android:text=""
+        android:textColor="@color/black_back"
+        android:textColorHint="@color/c_999999"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="21dp"
+        android:background="@mipmap/dl_bj"
+        android:text="确认添加"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="visible" />
+
+</LinearLayout>

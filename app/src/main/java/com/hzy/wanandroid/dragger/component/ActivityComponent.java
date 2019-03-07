@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.hzy.wanandroid.dragger.ActivityScope;
 import com.hzy.wanandroid.dragger.module.ActivityModule;
+import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
 import com.hzy.wanandroid.ui.article_search.ArticleSearchActivity;
 import com.hzy.wanandroid.ui.freq_web.FreqWebActivity;
 import com.hzy.wanandroid.ui.login.LoginActivity;
@@ -31,4 +32,6 @@ public interface ActivityComponent {
     void inject(FreqWebActivity freqWebActivity);
 
     void inject(MyCollectActivity myCollectActivity);
+
+    void inject(AddToDoActivity addToDoActivity);
 }

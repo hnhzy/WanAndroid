@@ -1,6 +1,5 @@
 package com.hzy.wanandroid.ui.todo.fragment;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +35,7 @@ public class DoneFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
 
     List<ToDoBean> mList = new ArrayList<>();
     ToDoAdapter mAdapter;
-    private int status;
+    private int status = 1;
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
@@ -47,14 +46,9 @@ public class DoneFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
      */
     private List<ToDoBean> list = new ArrayList<>();
 
-    public static DoneFragment newInstance(int status) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(TAG, status);
-        DoneFragment fragment = new DoneFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+    public static DoneFragment newInstance() {
+        return new DoneFragment();
     }
-
 
     @Override
     protected int getLayoutId() {
@@ -73,7 +67,6 @@ public class DoneFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
         mRvList.setAdapter(mAdapter);
         //禁用滑动事件
         mRvList.setNestedScrollingEnabled(false);
-        status = getArguments().getInt(TAG);
         mRefreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         mRefreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
         mRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -100,6 +93,11 @@ public class DoneFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
         mPresenter.getList(page);
     }
 
+    public void updateItem(ToDoBean bean) {
+        mList.add(0, bean);
+        mAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void updateList(ToDoPageBean bean) {
         list.addAll(bean.getDatas());
@@ -121,12 +119,16 @@ public class DoneFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
     public void done(int position, int status, ResponseBean responseBean) {
         if (responseBean.getErrorCode() == 0)
             ToastUtils.showShort("更新成功");
+        ToDoFragment.newInstance().updateItem(mList.get(position));
         mList.remove(position);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void delete(int position, ResponseBean responseBean) {
-        Log.e(TAG, "delete" + responseBean.toString());
+        if (responseBean.getErrorCode() == 0)
+            ToastUtils.showShort("删除成功");
+        mList.remove(position);
+        mAdapter.notifyDataSetChanged();
     }
 }
