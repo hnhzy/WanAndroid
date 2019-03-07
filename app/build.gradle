@@ -145,4 +145,7 @@ dependencies {
 
     //    implementation 'com.airbnb.android:lottie:2.3.0'
     implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1310_43612_sharewithdownload_withoutGame_obfs_20180706_163319.jar')
+    // ViewModel和LiveData依赖
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 }

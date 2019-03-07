@@ -1,7 +1,10 @@
 package com.hzy.wanandroid.ui.login;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +46,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
     Boolean isOtherToLogin = false;
 
+    LoginViewModel model;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_login;
@@ -68,6 +73,20 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         mTitleBar.setTitleBarBgColor(getResources().getColor(R.color.c_6c8cff));
         mTitleBar.setTitleColor(getResources().getColor(R.color.c_ffffff));
         mTitleBar.setTitle("登录");
+
+        model = ViewModelProviders.of(this).get(LoginViewModel.class);
+        model.loginResult().observe(this, new Observer<ResponseBean<LoginBean>>() {
+            @Override
+            public void onChanged(@Nullable ResponseBean<LoginBean> s) {
+                Log.d(TAG, "onChanged: " + s);
+                closeLoading();
+                if (s != null) {
+                    updateView(s);
+                } else {
+                    onFail();
+                }
+            }
+        });
     }
 
     @Override
@@ -91,6 +110,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
             case R.id.bt_register://注册
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
+            default:
         }
     }
 
@@ -102,7 +122,9 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         } else if (TextUtils.isEmpty(password)) {
             ToastUtils.showShort("请输入登录密码");
         } else {
-            mPresenter.postLogin(username, password);
+//            mPresenter.postLogin(username, password);
+            showLoading();
+            model.postLogin(username, password);
         }
     }
 
