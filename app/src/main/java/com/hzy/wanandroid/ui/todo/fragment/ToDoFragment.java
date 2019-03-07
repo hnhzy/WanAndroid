@@ -1,10 +1,9 @@
 package com.hzy.wanandroid.ui.todo.fragment;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.TextUtils;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
@@ -18,6 +17,10 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +39,7 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
 
     List<ToDoBean> mList = new ArrayList<>();
     ToDoAdapter mAdapter;
-    private int status=0;
+    private int status = 0;
 
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
@@ -93,44 +96,90 @@ public class ToDoFragment extends BaseMvpFragment<ToDoPresenter> implements ToDo
         });
         page = 1;
         mPresenter.getList(page);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void updateList(ToDoPageBean bean) {
-        list.addAll(bean.getDatas());
         if (page == 1) {
+            list.clear();
             mList.clear();
         }
+        list.addAll(bean.getDatas());
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getStatus() == status) {
                 mList.add(list.get(i));
             }
 
         }
-        page = bean.getCurPage();
+        if (mList == null) {
+            return;
+        }
+        for (int i = 0; i < mList.size(); i++) {
+            if (TextUtils.isEmpty(mList.get(i).getDateStr())) {
+                continue;
+            }
+            String date = mList.get(i).getDateStr();
+            /**
+             * //判断date是否已经存在，默认不存在
+             */
+            Boolean isContain = false;
+            for (int j = 0; j < i; j++) {
+                if (TextUtils.isEmpty(mList.get(i).getDateStr())) {
+                    continue;
+                }
+                if (mList.get(j).getDateStr().contains(date)) {
+                    isContain = true;
+                } else {
+                    isContain = false;
+                }
+            }
+            if (isContain) {
+                /**
+                 * //date存在设置为top布局隐藏
+                 */
+                mList.get(i).setTopVisible(false);
+            } else {
+                mList.get(i).setTopVisible(true);
+            }
+            mList.get(i).setBottomVisible(true);
+            mList.get(i).setArrowUp(true);
+        }
         pageCount = bean.getPageCount();
-        mAdapter.notifyDataSetChanged();
-    }
-
-    public void updateItem(ToDoBean bean){
-        mList.add(0,bean);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void done(int position, int status, ResponseBean responseBean) {
-        if (responseBean.getErrorCode() == 0)
+        if (responseBean.getErrorCode() == 0) {
+            EventBus.getDefault().post(mList.get(position));
+            mList.remove(position);
+            mAdapter.notifyDataSetChanged();
             ToastUtils.showShort("更新成功");
-        DoneFragment.newInstance().updateItem(mList.get(position));
-        mList.remove(position);
-        mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ToDoBean bean) {
+        if (bean.getStatus() == 1) {
+            bean.setStatus(0);
+            mList.add(bean);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void delete(int position, ResponseBean responseBean) {
-        if (responseBean.getErrorCode() == 0)
+        if (responseBean.getErrorCode() == 0) {
             ToastUtils.showShort("删除成功");
-        mList.remove(position);
-        mAdapter.notifyDataSetChanged();
+            mList.remove(position);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

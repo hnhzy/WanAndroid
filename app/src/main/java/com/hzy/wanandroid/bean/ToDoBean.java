@@ -30,6 +30,42 @@ public class ToDoBean {
     private int type;
     private int userId;
     private long completeDate;
+    /**
+     * 上半部分布局是否显示
+     */
+    private boolean isTopVisible;
+    /**
+     * 下面部分布局是否显示
+     */
+    private boolean isBottomVisible;
+    /**
+     * arrow是否朝上
+     */
+    private boolean isArrowUp;
+
+    public boolean isArrowUp() {
+        return isArrowUp;
+    }
+
+    public void setArrowUp(boolean arrowUp) {
+        isArrowUp = arrowUp;
+    }
+
+    public boolean isTopVisible() {
+        return isTopVisible;
+    }
+
+    public void setTopVisible(boolean topVisible) {
+        isTopVisible = topVisible;
+    }
+
+    public boolean isBottomVisible() {
+        return isBottomVisible;
+    }
+
+    public void setBottomVisible(boolean bottomVisible) {
+        isBottomVisible = bottomVisible;
+    }
 
     public String getCompleteDateStr() {
         return completeDateStr;

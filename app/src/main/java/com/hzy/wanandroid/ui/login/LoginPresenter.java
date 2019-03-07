@@ -14,7 +14,10 @@ import javax.inject.Inject;
 /**
  * Created by hzy on 2019/1/18
  * LoginPresenter
- **/
+ *
+ * @author hzy
+ *
+ */
 public class LoginPresenter extends BasePAV<LoginContract.View> implements LoginContract.Presenter {
 
     @Inject
