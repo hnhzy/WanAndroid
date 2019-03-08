@@ -14,7 +14,9 @@ import javax.inject.Inject;
 
 /**
  * Created by hzy on 2019/1/22
- **/
+ *
+ * @author hzy
+ */
 public class HomePresenter extends BasePAV<HomeContract.View> implements HomeContract.Presenter {
 
     public static final String TAG = "HomePresenter";
@@ -31,10 +33,8 @@ public class HomePresenter extends BasePAV<HomeContract.View> implements HomeCon
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
-                    Log.d(TAG, "BannerList--" + responseBean.toString());
                     mView.updateBanner(responseBean.getData());
                 }, throwable -> {
-                    Log.d(TAG, "Throwable--" + throwable.toString());
                     mView.onFail();
                 });
 
@@ -48,18 +48,16 @@ public class HomePresenter extends BasePAV<HomeContract.View> implements HomeCon
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
-                    Log.d(TAG, "ArticleList--" + responseBean.toString());
                     mView.updateArticle(responseBean.getData());
                 }, throwable -> {
-                    Log.d(TAG, "ArticleList--" + throwable.toString());
                     mView.onFail();
                 });
     }
 
     @Override
-    public void collectArticle(String title, String author, String link, int position) {
+    public void collectArticle(int id, int position) {
         App.apiService(ApiService.class)
-                .outsideCollect(title, author, link)
+                .insideCollect(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
@@ -70,7 +68,7 @@ public class HomePresenter extends BasePAV<HomeContract.View> implements HomeCon
     }
 
     @Override
-    public void unCollectArticle(int id, String title, String author, String link, int position) {
+    public void unCollectArticle(int id, int position) {
         App.apiService(ApiService.class)
                 .articleListUncollect(id)
                 .compose(RxSchedulers.io_main())
@@ -80,7 +78,6 @@ public class HomePresenter extends BasePAV<HomeContract.View> implements HomeCon
                 }, throwable -> {
                     mView.onFail();
                 });
-
     }
 
 }

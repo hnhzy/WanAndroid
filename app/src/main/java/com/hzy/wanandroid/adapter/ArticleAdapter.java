@@ -15,7 +15,9 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- **/
+ *
+ * @author hzy
+ */
 public class ArticleAdapter extends CommonAdapter<ArticleListBean> {
 
     private Context mContext;
@@ -45,16 +47,12 @@ public class ArticleAdapter extends CommonAdapter<ArticleListBean> {
                 .setImageResource(R.id.imv_like, articleListBean.isCollect() ?
                         R.drawable.icon_like :
                         R.drawable.icon_unlike)
-                .setOnClickListener(R.id.imv_like, v -> {//收藏和取消收藏
+                //收藏和取消收藏
+                .setOnClickListener(R.id.imv_like, v -> {
                     if (articleListBean.isCollect()) {
-                        mPresenter.unCollectArticle(articleListBean.getId(),
-                                articleListBean.getTitle(),
-                                articleListBean.getAuthor(),
-                                articleListBean.getLink(), position);
+                        mPresenter.unCollectArticle(articleListBean.getId(), position);
                     } else {
-                        mPresenter.collectArticle(articleListBean.getTitle(),
-                                articleListBean.getAuthor(),
-                                articleListBean.getLink(), position);
+                        mPresenter.collectArticle(articleListBean.getId(), position);
                     }
                 })
                 .setOnClickListener(R.id.tv_project, v -> {
