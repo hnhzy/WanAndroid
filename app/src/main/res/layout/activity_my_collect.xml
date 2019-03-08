@@ -23,10 +23,33 @@
         app:srlEnablePreviewInEditMode="true"
         app:srlPrimaryColor="@color/c_444444">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_list"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:text="已经到底啦"
+                    android:textColor="@color/c_999999"
+                    android:textSize="@dimen/sp_16"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

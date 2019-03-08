@@ -17,7 +17,8 @@ import javax.inject.Inject;
 public class MyCollectPresenter extends BasePAV<MyCollectContract.View> implements MyCollectContract.Presenter {
 
     @Inject
-    public MyCollectPresenter(){}
+    public MyCollectPresenter() {
+    }
 
     @Override
     public void getData(int page) {
@@ -33,22 +34,9 @@ public class MyCollectPresenter extends BasePAV<MyCollectContract.View> implemen
     }
 
     @Override
-    public void collectArticle(String title, String author, String link, int position) {
+    public void unCollectArticle(int id, String originId, int position) {
         App.apiService(ApiService.class)
-                .outsideCollect(title, author, link)
-                .compose(RxSchedulers.io_main())
-                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
-                .subscribe(responseBean -> {
-                    mView.updateCollect(responseBean, position);
-                }, throwable -> {
-                    mView.onFail();
-                });
-    }
-
-    @Override
-    public void unCollectArticle(int id, String title, String author, String link, int position) {
-        App.apiService(ApiService.class)
-                .articleListUncollect(id, title, author, link)
+                .myPageUncollect(id, originId)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
@@ -56,6 +44,5 @@ public class MyCollectPresenter extends BasePAV<MyCollectContract.View> implemen
                 }, throwable -> {
                     mView.onFail();
                 });
-
     }
 }

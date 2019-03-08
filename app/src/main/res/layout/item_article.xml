@@ -108,9 +108,8 @@
 
     <View
         style="@style/horizontal_line"
-        android:layout_marginTop="@dimen/dp_10"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_project" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
 </android.support.constraint.ConstraintLayout>

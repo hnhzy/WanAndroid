@@ -2,6 +2,7 @@ package com.hzy.wanandroid.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ArticleListBean;
@@ -41,21 +42,13 @@ public class CollectAdapter extends CommonAdapter<ArticleListBean> {
                         .replaceAll("&mdash;", "—"))
                 .setVisible(R.id.tv_new, false)
                 .setVisible(R.id.tv_project, false)
-                .setText(R.id.tv_time, "时间：" + articleListBean.getNiceDate())
-                .setImageResource(R.id.imv_like, articleListBean.isCollect() ?
-                        R.drawable.icon_like :
-                        R.drawable.icon_unlike)
-                .setOnClickListener(R.id.imv_like, v -> {//收藏和取消收藏
-                    if (articleListBean.isCollect()) {
-                        mPresenter.unCollectArticle(articleListBean.getId(),
-                                articleListBean.getTitle(),
-                                articleListBean.getAuthor(),
-                                articleListBean.getLink(), position);
-                    } else {
-                        mPresenter.collectArticle(articleListBean.getTitle(),
-                                articleListBean.getAuthor(),
-                                articleListBean.getLink(), position);
-                    }
+                .setText(R.id.tv_time, "收藏时间：" + articleListBean.getNiceDate())
+                .setImageResource(R.id.imv_like, R.drawable.icon_like)
+                //取消收藏
+                .setOnClickListener(R.id.imv_like, v -> {
+                    mPresenter.unCollectArticle(articleListBean.getId(),
+                            TextUtils.isEmpty(articleListBean.getOrigin()) ? "-1" :
+                                    articleListBean.getOrigin(), position);
                 })
                 .setOnClickListener(R.id.tv_project, v -> {
                     Intent intent = new Intent(mContext, X5WebView.class);

@@ -57,7 +57,7 @@ public class SearchPresenter extends BasePAV<SearchContract.View> implements Sea
     @Override
     public void unCollectArticle(int id, String title, String author, String link, int position) {
         App.apiService(ApiService.class)
-                .articleListUncollect(id, title, author, link)
+                .articleListUncollect(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {

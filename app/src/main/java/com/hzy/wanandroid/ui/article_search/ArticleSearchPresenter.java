@@ -69,7 +69,7 @@ public class ArticleSearchPresenter extends BasePAV<ArticleSearchContract.View> 
     @Override
     public void unCollectArticle(int id, String title, String author, String link, int position) {
         App.apiService(ApiService.class)
-                .articleListUncollect(id, title, author, link)
+                .articleListUncollect(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {

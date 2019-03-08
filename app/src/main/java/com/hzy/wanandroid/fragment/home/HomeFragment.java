@@ -17,9 +17,7 @@ import com.hzy.wanandroid.bean.ArticleListBean;
 import com.hzy.wanandroid.bean.HomeBanner;
 import com.hzy.wanandroid.http.ResponseBean;
 import com.hzy.wanandroid.ui.X5WebView;
-import com.hzy.wanandroid.ui.article_search.ArticleSearchActivity;
 import com.hzy.wanandroid.widget.GlideImageLoader;
-import com.hzy.wanandroid.widget.TitleBarLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -38,7 +36,10 @@ import butterknife.BindView;
 /**
  * Created by hzy on 2019/1/22
  * HomeFragment 首页fragment
- **/
+ *
+ * @author Administrator
+ *
+ * */
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
 
     public static final String TAG = "HomeFragment";
@@ -197,7 +198,9 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         mAdapter.notifyDataSetChanged();
     }
 
-    //如果你需要考虑更好的体验，可以这么操作
+    /**
+     * 如果你需要考虑更好的体验，可以这么操作
+     */
     @Override
     public void onStart() {
         super.onStart();

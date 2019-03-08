@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -31,7 +32,9 @@ import butterknife.BindView;
 /**
  * Created by hzy on 2019/3/5
  * 我的收藏
- **/
+ *
+ * @author hzy
+ */
 public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> implements MyCollectContract.View {
 
 
@@ -44,10 +47,12 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
     SmartRefreshLayout mRefreshLayout;
 
     int page = 0;
-    int pageCount = 0;
     CollectAdapter mAdapter;
     List<ArticleListBean> mColletList = new ArrayList<>();
-    boolean isOver;
+
+    @BindView(R.id.tv_end)
+    TextView mTvEnd;
+    private boolean over;
 
     @Override
     protected int getLayout() {
@@ -68,7 +73,7 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
         mTitleBar.setTitle("我的收藏");
         mTitleBar.setLeftBack(v -> finish());
 
-        
+
         mAdapter = new CollectAdapter(MyCollectActivity.this, mColletList, mPresenter);
         mRvCollet.setLayoutManager(new LinearLayoutManager(this));
         mRvCollet.setAdapter(mAdapter);
@@ -94,10 +99,12 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
         mRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                if (pageCount > page) {
+                if (!over) {
                     page++;
+                    mPresenter.getData(page);
+                } else {
+                    ToastUtils.showShort("已经到底啦");
                 }
-                mPresenter.getData(page);
                 refreshLayout.finishLoadMore();
             }
 
@@ -114,8 +121,11 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
 
     @Override
     public void updateView(ArticleBean bean) {
-        page = bean.getCurPage();
-        pageCount = bean.getPageCount();
+        //大于四条才显示这个
+        if (bean.getDatas() != null && bean.getDatas().size() > 4) {
+            over = bean.isOver();
+            mTvEnd.setVisibility(over ? View.VISIBLE : View.GONE);
+        }
         if (page == 0) {
             mColletList.clear();
         }
@@ -124,16 +134,13 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
     }
 
     @Override
-    public void updateCollect(ResponseBean responseBean, int position) {
-        ToastUtils.showShort("收藏成功");
-        mColletList.get(position).setCollect(true);
-        mAdapter.notifyItemChanged(position);
-    }
-
-    @Override
     public void updateUnCollect(ResponseBean responseBean, int position) {
-        ToastUtils.showShort("取消收藏成功");
-        mColletList.get(position).setCollect(false);
-        mAdapter.notifyItemChanged(position);
+        if (responseBean.getErrorCode() == 0) {
+            ToastUtils.showShort("取消收藏成功");
+            mColletList.remove(position);
+            mAdapter.notifyDataSetChanged();
+        } else {
+            ToastUtils.showShort(responseBean.getErrorMsg());
+        }
     }
 }

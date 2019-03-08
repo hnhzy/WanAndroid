@@ -53,7 +53,7 @@ public class PubListPresenter extends BasePAV<PubListContract.View> implements P
     @Override
     public void unCollectArticle(int id, String title, String author, String link, int position) {
         App.apiService(ApiService.class)
-                .articleListUncollect(id, title, author, link)
+                .articleListUncollect(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {

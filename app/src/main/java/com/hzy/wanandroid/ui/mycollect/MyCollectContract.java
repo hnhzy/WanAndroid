@@ -10,15 +10,17 @@ import com.hzy.wanandroid.http.ResponseBean;
  **/
 public interface MyCollectContract {
 
-    interface View extends BaseView{
+    interface View extends BaseView {
+
         void updateView(ArticleBean bean);
-        void updateCollect(ResponseBean responseBean, int position);
         void updateUnCollect(ResponseBean responseBean, int position);
+
     }
 
-    interface Presenter extends BasePersenter<View>{
+    interface Presenter extends BasePersenter<View> {
+
         void getData(int page);
-        void collectArticle(String title, String author, String link, int position);
-        void unCollectArticle(int id, String title, String author, String link, int position);
+        void unCollectArticle(int id, String originId, int position);
+
     }
 }

@@ -204,7 +204,6 @@ public interface ApiService {
      * @param id
      * @return
      */
-    @FormUrlEncoded
     @POST("/lg/collect/{id}/json")
     Observable<ResponseBean> insideCollect(@Path("id") int id);
 
@@ -226,34 +225,21 @@ public interface ApiService {
     /**
      * 6.4 取消收藏
      * 6.4.1 文章列表
-     *
-     * @param title
-     * @param author
-     * @param link
+     * /lg/uncollect_originId/2333/json
      * @return
      */
-    @FormUrlEncoded
     @POST("/lg/uncollect_originId/{id}/json")
-    Observable<ResponseBean> articleListUncollect(@Path("id") int id,
-                                                  @Field("title") String title,
-                                                  @Field("author") String author,
-                                                  @Field("link") String link);
+    Observable<ResponseBean> articleListUncollect(@Path("id") int id);
 
     /**
      * 6.4 取消收藏
      * 6.4.2 我的收藏页面（该页面包含自己录入的内容）
-     *
-     * @param title
-     * @param author
-     * @param link
      * @return
      */
     @FormUrlEncoded
     @POST("/lg/uncollect/{id}/json")
     Observable<ResponseBean> myPageUncollect(@Path("id") int id,
-                                             @Field("title") String title,
-                                             @Field("author") String author,
-                                             @Field("link") String link);
+                                             @Field("originId") String originId);
 
 
     /**

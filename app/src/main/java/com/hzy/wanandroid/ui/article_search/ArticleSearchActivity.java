@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.adapter.HotSearchAdapter;
@@ -94,7 +95,6 @@ public class ArticleSearchActivity extends BaseMvpActivity<ArticleSearchPresente
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
                         .hideSoftInputFromWindow(ArticleSearchActivity.this.getCurrentFocus()
                                 .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
 
                 if (TextUtils.isEmpty(mEtSearch.getText().toString())) {
                     Toast.makeText(ArticleSearchActivity.this, "请输入搜索内容", Toast.LENGTH_SHORT).show();
@@ -227,7 +227,8 @@ public class ArticleSearchActivity extends BaseMvpActivity<ArticleSearchPresente
 
     @Override
     public void updateView(ArticleBean bean) {
-        if (bean.getDatas() != null && bean.getDatas().size() > 4) {//大于四条才显示这个
+        //大于四条才显示这个
+        if (bean.getDatas() != null && bean.getDatas().size() > 4) {
             over = bean.isOver();
             mTvEnd.setVisibility(over ? View.VISIBLE : View.GONE);
         }

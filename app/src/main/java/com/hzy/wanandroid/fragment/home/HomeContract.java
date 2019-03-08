@@ -11,7 +11,10 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/22
- **/
+ *
+ * @author hzy
+ *
+ * */
 public interface HomeContract {
 
     interface View extends BaseView {

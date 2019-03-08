@@ -4,7 +4,9 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- **/
+ *
+ * @author hzy
+ * */
 public class ArticleListBean {
 
     /**

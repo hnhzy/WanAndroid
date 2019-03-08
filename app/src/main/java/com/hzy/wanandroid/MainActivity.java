@@ -49,6 +49,9 @@ import java.util.List;
 import butterknife.BindView;
 import io.reactivex.annotations.Nullable;
 
+/**
+ * @author hzy
+ */
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -91,7 +94,9 @@ public class MainActivity extends BaseActivity
         fragments.add(NaviFragment.getInstance());
         fragments.add(PublicAddrFragment.getInstance());
 
-        mBtNavi.setItemIconTintList(null);//除去自带效果
+
+        //除去自带效果
+        mBtNavi.setItemIconTintList(null);
 
         toolbar.inflateMenu(R.menu.menu_activity_main);
         setSupportActionBar(toolbar);
@@ -149,10 +154,9 @@ public class MainActivity extends BaseActivity
 
             @Override
             public void onPageSelected(int position) {
-                Log.d("onPageSelected", "onPageSelected:" + position);
+                //写滑动页面后做的事，使每一个fragmen与一个page相对应
                 mBtNavi.getMenu().getItem(position).setChecked(true);
                 toolbar.setTitle(mTitleStrs[position]);
-                //写滑动页面后做的事，使每一个fragmen与一个page相对应
             }
 
             @Override
@@ -165,6 +169,9 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        /**
+         * 退出登录的时候，回来改变mUsername的值
+         */
         mUsername.setText((String) SharedPreferencesUtil.getData(Constants.USERNAME, "请登录"));
     }
 
@@ -280,32 +287,7 @@ public class MainActivity extends BaseActivity
                 break;
             case R.id.nav_logout:
                 if ((Boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
-                    new AlertView("退出登录", "您确定退出登录？", null, new String[]{"取消", "确定"}, null, this,
-                            AlertView.Style.Alert, (o, position) -> {
-                        switch (position) {
-                            case 0:
-
-                                break;
-                            case 1:
-                                SharedPreferencesUtil.putData(Constants.ISLOGIN, false);
-                                SharedPreferencesUtil.putData(Constants.USERNAME, "请登录");
-                                App.apiService(ApiService.class)
-                                        .getlogout()
-                                        .compose(RxSchedulers.io_main())
-                                        .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from
-                                                (this)))
-                                        .subscribe(bean -> {
-                                            if (bean.getErrorCode() == 0) {
-                                                ToastUtils.showShort("退出登录成功");
-                                                mUsername.setText((String) SharedPreferencesUtil.getData
-                                                        (Constants.USERNAME, "请登录"));
-                                            }
-                                        });
-                                break;
-                            default:
-                                break;
-                        }
-                    }).show();
+                    AlertLogout();
                 } else {
                     goLogin();
                 }
@@ -317,6 +299,35 @@ public class MainActivity extends BaseActivity
 
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void AlertLogout() {
+        new AlertView("退出登录", "您确定退出登录？", null, new String[]{"取消", "确定"}, null, this,
+                AlertView.Style.Alert, (o, position) -> {
+            switch (position) {
+                case 0:
+
+                    break;
+                case 1:
+                    SharedPreferencesUtil.putData(Constants.ISLOGIN, false);
+                    SharedPreferencesUtil.putData(Constants.USERNAME, "请登录");
+                    App.apiService(ApiService.class)
+                            .getlogout()
+                            .compose(RxSchedulers.io_main())
+                            .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from
+                                    (this)))
+                            .subscribe(bean -> {
+                                if (bean.getErrorCode() == 0) {
+                                    ToastUtils.showShort("退出登录成功");
+                                    mUsername.setText((String) SharedPreferencesUtil.getData
+                                            (Constants.USERNAME, "请登录"));
+                                }
+                            });
+                    break;
+                default:
+                    break;
+            }
+        }).show();
     }
 
     private void goLogin() {
@@ -331,7 +342,8 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {//如果抽屉布局没有关闭则先关闭
+        //如果抽屉布局没有关闭则先关闭
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {//如果抽屉布局已经关闭则执行“再按一次退出程序”
             long currentTime = System.currentTimeMillis();
@@ -347,16 +359,23 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (data == null || resultCode != Activity.RESULT_OK) return;
+        if (data == null || resultCode != Activity.RESULT_OK) {
+            return;
+        }
         switch (requestCode) {
             case PublicAddrFragment.REQ_CODE:
-                PublicAddrFragment.getInstance(mTitleStrs[4]).onActivityResult(requestCode, resultCode, data);
+                PublicAddrFragment.getInstance(mTitleStrs[4]).onActivityResult(requestCode,
+                        resultCode, data);
                 break;
             case ProjectFragment.REQ_CODE:
-                ProjectFragment.getInstance(mTitleStrs[1]).onActivityResult(requestCode, resultCode, data);
+                ProjectFragment.getInstance(mTitleStrs[1]).onActivityResult(requestCode,
+                        resultCode, data);
                 break;
             case SystemFragment.REQ_CODE:
-                SystemFragment.getInstance(mTitleStrs[2]).onActivityResult(requestCode, resultCode, data);
+                SystemFragment.getInstance(mTitleStrs[2]).onActivityResult(requestCode,
+                        resultCode, data);
+                break;
+            default:
                 break;
         }
     }
