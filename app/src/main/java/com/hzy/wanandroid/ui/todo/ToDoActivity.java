@@ -5,16 +5,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.blankj.utilcode.util.BarUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.adapter.MyPagerAdapter;
 import com.hzy.wanandroid.base.mvc.BaseActivity;
 import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
-import com.hzy.wanandroid.ui.todo.fragment.DoneFragment;
-import com.hzy.wanandroid.ui.todo.fragment.ToDoFragment;
+import com.hzy.wanandroid.ui.todo.fragment.donefragment.DoneFragment;
+import com.hzy.wanandroid.ui.todo.fragment.todofragment.ToDoFragment;
 import com.hzy.wanandroid.widget.TitleBarLayout;
 
 import java.util.ArrayList;
@@ -23,7 +21,10 @@ import butterknife.BindView;
 
 /**
  * Created by hzy on 2019/3/5
- **/
+ *
+ * @author hzy
+ *
+ * */
 public class ToDoActivity extends BaseActivity {
 
     @BindView(R.id.title_bar)

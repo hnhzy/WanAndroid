@@ -332,7 +332,6 @@ public interface ApiService {
      * @param date     2018-08-01（必须）
      * @param status   // 0为未完成，1为完成
      * @param type
-     * @param priority
      * @return
      */
     @FormUrlEncoded
@@ -342,8 +341,7 @@ public interface ApiService {
                                         @Field("content") String content,
                                         @Field("date") String date,
                                         @Field("status") int status,
-                                        @Field("type") int type,
-                                        @Field("priority") int priority);
+                                        @Field("type") int type);
 
     /**
      * 3. 删除一个 Todo

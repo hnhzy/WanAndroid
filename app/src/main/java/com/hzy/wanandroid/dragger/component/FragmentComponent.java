@@ -13,8 +13,8 @@ import com.hzy.wanandroid.fragment.project_list.ProjectListFragment;
 import com.hzy.wanandroid.fragment.public_address.PublicAddrFragment;
 import com.hzy.wanandroid.fragment.subsystem.SubSystemFragment;
 import com.hzy.wanandroid.fragment.system.SystemFragment;
-import com.hzy.wanandroid.ui.todo.fragment.DoneFragment;
-import com.hzy.wanandroid.ui.todo.fragment.ToDoFragment;
+import com.hzy.wanandroid.ui.todo.fragment.donefragment.DoneFragment;
+import com.hzy.wanandroid.ui.todo.fragment.todofragment.ToDoFragment;
 
 import dagger.Component;
 

@@ -1,4 +1,4 @@
-package com.hzy.wanandroid.ui.todo.fragment;
+package com.hzy.wanandroid.ui.todo.fragment.todofragment;
 
 import android.arch.lifecycle.LifecycleOwner;
 
@@ -13,7 +13,10 @@ import javax.inject.Inject;
 
 /**
  * Created by hzy on 2019/3/5
- **/
+ *
+ * @author hzy
+ *
+ * */
 public class ToDoPresenter extends BasePAV<ToDoContract.View> implements ToDoContract.Presenter {
 
     @Inject
@@ -36,14 +39,14 @@ public class ToDoPresenter extends BasePAV<ToDoContract.View> implements ToDoCon
     }
 
     @Override
-    public void delete(int position,int id) {
+    public void delete(int position,int subPos,int id) {
         App.apiService(ApiService.class)
                 .toDoDelete(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
                     if (responseBean != null) {
-                        mView.delete(position,responseBean);
+                        mView.delete(position,subPos,responseBean);
                     }
                 }, throwable -> {
                     mView.onFail();
@@ -51,14 +54,14 @@ public class ToDoPresenter extends BasePAV<ToDoContract.View> implements ToDoCon
     }
 
     @Override
-    public void done(int position,int id, int status) {
+    public void done(int position,int subPos,int id, int status) {
         App.apiService(ApiService.class)
                 .toDoDone(id, status)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
                     if (responseBean != null) {
-                        mView.done(position,status,responseBean);
+                        mView.done(position,subPos,status,responseBean);
                     }
                 }, throwable -> {
                     mView.onFail();

@@ -1,9 +1,13 @@
 package com.hzy.wanandroid.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by hzy on 2019/3/6
- **/
-public class ToDoBean {
+ *
+ * @author hzy
+ */
+public class ToDoBean implements Cloneable, Serializable {
 
     /**
      * completeDateStr :
@@ -18,7 +22,7 @@ public class ToDoBean {
      * userId : 5990
      * completeDate : 1551715200000
      */
-
+    private String where;
     private String completeDateStr;
     private String content;
     private long date;
@@ -42,6 +46,14 @@ public class ToDoBean {
      * arrow是否朝上
      */
     private boolean isArrowUp;
+
+    public String getWhere() {
+        return where;
+    }
+
+    public void setWhere(String where) {
+        this.where = where;
+    }
 
     public boolean isArrowUp() {
         return isArrowUp;
@@ -153,5 +165,16 @@ public class ToDoBean {
 
     public void setCompleteDate(long completeDate) {
         this.completeDate = completeDate;
+    }
+
+
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

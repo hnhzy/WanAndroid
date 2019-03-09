@@ -1,4 +1,4 @@
-package com.hzy.wanandroid.ui.addtodo;
+package com.hzy.wanandroid.ui.todo.fragment.donefragment;
 
 import android.arch.lifecycle.LifecycleOwner;
 
@@ -11,29 +11,27 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import javax.inject.Inject;
 
-import retrofit2.http.Field;
-import retrofit2.http.Path;
-
 /**
- * Created by hzy on 2019/3/7
+ * Created by hzy on 2019/3/5
  *
- * @author Administrator
+ * @author hzy
  *
  * */
-public class AddToDoPresenter extends BasePAV<AddToDoContract.View> implements AddToDoContract.Presenter {
+public class DonePresenter extends BasePAV<DoneContract.View> implements DoneContract.Presenter {
 
     @Inject
-    public AddToDoPresenter(){}
+    public DonePresenter() {
+    }
 
     @Override
-    public void addToDo(String title,String content,String date,int type) {
+    public void getList(int page) {
         App.apiService(ApiService.class)
-                .toDoAdd(title, content,date,type)
+                .toDoList(page)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
                     if (responseBean != null) {
-                        mView.addView(responseBean);
+                        mView.updateList(responseBean.getData());
                     }
                 }, throwable -> {
                     mView.onFail();
@@ -41,18 +39,32 @@ public class AddToDoPresenter extends BasePAV<AddToDoContract.View> implements A
     }
 
     @Override
-    public void updateToDo(int id,String title,String content,String date,int status,int type) {
+    public void delete(int position,int subPos,int id) {
         App.apiService(ApiService.class)
-                .toDoUpdate(id,title, content,date,status,type)
+                .toDoDelete(id)
                 .compose(RxSchedulers.io_main())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
                 .subscribe(responseBean -> {
                     if (responseBean != null) {
-                        mView.updateView(responseBean);
+                        mView.delete(position,subPos,responseBean);
                     }
                 }, throwable -> {
                     mView.onFail();
                 });
     }
 
+    @Override
+    public void done(int position,int subPos,int id, int status) {
+        App.apiService(ApiService.class)
+                .toDoDone(id, status)
+                .compose(RxSchedulers.io_main())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
+                .subscribe(responseBean -> {
+                    if (responseBean != null) {
+                        mView.done(position,subPos,status,responseBean);
+                    }
+                }, throwable -> {
+                    mView.onFail();
+                });
+    }
 }

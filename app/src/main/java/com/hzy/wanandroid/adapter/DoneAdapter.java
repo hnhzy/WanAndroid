@@ -11,25 +11,27 @@ import android.widget.TextView;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ToDoBean;
 import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
-import com.hzy.wanandroid.ui.todo.fragment.todofragment.ToDoPresenter;
+import com.hzy.wanandroid.ui.todo.fragment.donefragment.DonePresenter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Created by hzy on 2019/1/24
  *
  * @author hzy
  */
-public class ToDoAdapter extends CommonAdapter<List<ToDoBean>> {
+public class DoneAdapter extends CommonAdapter<List<ToDoBean>> {
 
     private Context mContext;
-    private ToDoPresenter mPresenter;
+    private DonePresenter mPresenter;
     private List<List<ToDoBean>> datas;
 
-    public ToDoAdapter(Context context, List<List<ToDoBean>> datas,
-                       ToDoPresenter mPresenter) {
+    public DoneAdapter(Context context, List<List<ToDoBean>> datas,
+                       DonePresenter mPresenter) {
         super(context, R.layout.item_todo, datas);
         mContext = context;
         this.mPresenter = mPresenter;
@@ -78,7 +80,7 @@ public class ToDoAdapter extends CommonAdapter<List<ToDoBean>> {
                 imv_undone.setOnClickListener(v -> {
                     int subPos = (int) imv_undone.getTag();
                     mPresenter.done(position, subPos, beanList.get(subPos).getId(),
-                            1);
+                            0);
                 });
                 rl_item.setTag(i);
                 rl_item.setOnClickListener(v -> {

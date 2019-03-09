@@ -32,7 +32,10 @@ import butterknife.Unbinder;
  * Created by hzy on 2019/1/17
  * <p>
  * MVC BaseActivity 一些简单的页面依然使用mvc实现
- **/
+ *
+ * @author hzy
+ *
+ * */
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     protected KProgressHUD mKProgressHUD;
