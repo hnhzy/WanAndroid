@@ -5,6 +5,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.hzy.wanandroid.App;
+import com.hzy.wanandroid.config.Constants;
 import com.hzy.wanandroid.service.ApiService;
 import com.hzy.wanandroid.utils.StringConverterFactory;
 
@@ -21,10 +22,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by hzy on 2019/1/10
  * 网络请求
- **/
+ *
+ * @author hzy
+ */
 public class HttpManager {
-
-    public static final String BASE_URL = "http://www.wanandroid.com";
 
     private Retrofit mRetrofit;
     private HashMap<Class, Retrofit> mServiceHashMap = new HashMap<>();
@@ -49,7 +50,7 @@ public class HttpManager {
 
         // int retrofit
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

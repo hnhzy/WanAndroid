@@ -12,13 +12,14 @@ import java.util.List;
 /**
  * Created by hzy on 2019/1/24
  * SubSysAdapter
- **/
+ *
+ * @author Administrator
+ *
+ * */
 public class SubSysAdapter extends CommonAdapter<SystemDataChildBean> {
-    private Context mContext;
 
     public SubSysAdapter(Context context, List<SystemDataChildBean> datas) {
         super(context, R.layout.item_navi_grid, datas);
-        mContext = context;
     }
 
     @Override

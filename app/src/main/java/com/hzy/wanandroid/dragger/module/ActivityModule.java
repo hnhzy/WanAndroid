@@ -8,6 +8,9 @@ import com.hzy.wanandroid.dragger.ActivityScope;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * @author Administrator
+ */
 @Module
 public class ActivityModule {
     private Activity mActivity;

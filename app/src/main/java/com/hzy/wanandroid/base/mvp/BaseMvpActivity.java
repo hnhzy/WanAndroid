@@ -20,7 +20,9 @@ import io.reactivex.annotations.Nullable;
  * Created by hzy on 2019/1/17
  * <p>
  * MVP BaseMvpActivity
- **/
+ *
+ * @author hzy
+ */
 public abstract class BaseMvpActivity<T extends BasePersenter> extends AppCompatActivity implements BaseView {
 
 
@@ -38,8 +40,9 @@ public abstract class BaseMvpActivity<T extends BasePersenter> extends AppCompat
         unbinder = ButterKnife.bind(this);
         ButterKnife.bind(this);
         initInject();
-        if (mPresenter != null)
+        if (mPresenter != null) {
             mPresenter.attachView(this);
+        }
         initViewAndData();
     }
 
@@ -97,8 +100,9 @@ public abstract class BaseMvpActivity<T extends BasePersenter> extends AppCompat
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null)
+        if (mPresenter != null) {
             mPresenter.detachView();
+        }
         unbinder.unbind();
     }
 }

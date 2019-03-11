@@ -13,7 +13,9 @@ import retrofit2.Retrofit;
 /**
  * Created by hzy on 2019/1/10
  * StringConverterFactory将数据解析成最基本的String返回
- **/
+ *
+ * @author Administrator
+ */
 public class StringConverterFactory extends Converter.Factory {
     private static final MediaType MEDIA_TYPE = MediaType.parse("text/plain");
 
@@ -22,7 +24,8 @@ public class StringConverterFactory extends Converter.Factory {
     }
 
     @Override
-    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
+                                                            Retrofit retrofit) {
         if (String.class.equals(type)) {
             return (Converter<ResponseBody, String>) value -> value.string();
         }
@@ -30,8 +33,11 @@ public class StringConverterFactory extends Converter.Factory {
     }
 
     @Override
-    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-        if(String.class.equals(type)) {
+    public Converter<?, RequestBody> requestBodyConverter(Type type,
+                                                          Annotation[] parameterAnnotations,
+                                                          Annotation[] methodAnnotations,
+                                                          Retrofit retrofit) {
+        if (String.class.equals(type)) {
             return (Converter<String, RequestBody>) value -> RequestBody.create(MEDIA_TYPE, value);
         }
 

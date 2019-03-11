@@ -5,16 +5,19 @@ import android.app.Activity;
 
 import com.hzy.wanandroid.dragger.ActivityScope;
 import com.hzy.wanandroid.dragger.module.ActivityModule;
-import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
-import com.hzy.wanandroid.ui.article_search.ArticleSearchActivity;
-import com.hzy.wanandroid.ui.freq_web.FreqWebActivity;
-import com.hzy.wanandroid.ui.login.LoginActivity;
-import com.hzy.wanandroid.ui.mycollect.MyCollectActivity;
-import com.hzy.wanandroid.ui.register.RegisterActivity;
-import com.hzy.wanandroid.ui.search.SearchActivity;
+import com.hzy.wanandroid.ui.activity.artsearch.ArticleSearchActivity;
+import com.hzy.wanandroid.ui.activity.freqweb.FreqWebActivity;
+import com.hzy.wanandroid.ui.activity.login.LoginActivity;
+import com.hzy.wanandroid.ui.activity.mycollect.MyCollectActivity;
+import com.hzy.wanandroid.ui.activity.pubsearch.SearchActivity;
+import com.hzy.wanandroid.ui.activity.register.RegisterActivity;
+import com.hzy.wanandroid.ui.activity.todo.add.AddToDoActivity;
 
 import dagger.Component;
 
+/**
+ * @author Administrator
+ */
 @ActivityScope
 @Component(dependencies = AppComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {

@@ -9,7 +9,9 @@ import com.squareup.leakcanary.LeakCanary;
 /**
  * Created by hzy on 2019/1/21
  * 如果是正式模式则关闭，测试模式则开启
- **/
+ *
+ * @author Administrator
+ * */
 public class DevelopmentModeManager {
 
     public static void initStetho(Context context) {

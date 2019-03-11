@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by hzy on 2019/1/25
- **/
+ * Created by hzy on 2019/1/24
+ *
+ * @author hzy
+ * */
 public class NaviBean implements Serializable {
 
     private int cid;

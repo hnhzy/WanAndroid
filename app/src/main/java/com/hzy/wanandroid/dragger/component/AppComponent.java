@@ -9,11 +9,18 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
+/**
+ * @author Administrator
+ */
 @Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
+    /**
+     * 提供App的Context
+     * @return
+     */
     @ContextLife("Application")
-    App getContext();  // 提供App的Context
+    App getContext();
 
 }

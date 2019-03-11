@@ -6,9 +6,9 @@ import android.text.Html;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ArticleListBean;
-import com.hzy.wanandroid.http.HttpManager;
-import com.hzy.wanandroid.ui.X5WebView;
-import com.hzy.wanandroid.ui.article_search.ArticleSearchPresenter;
+import com.hzy.wanandroid.config.Constants;
+import com.hzy.wanandroid.ui.activity.X5WebView;
+import com.hzy.wanandroid.ui.activity.artsearch.ArticleSearchPresenter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -16,7 +16,10 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- **/
+ * HotSearchListAdapter  搜索结果
+ *
+ * @author Administrator
+ */
 public class HotSearchListAdapter extends CommonAdapter<ArticleListBean> {
 
     private Context mContext;
@@ -33,7 +36,7 @@ public class HotSearchListAdapter extends CommonAdapter<ArticleListBean> {
     protected void convert(ViewHolder holder, ArticleListBean bean, int position) {
         Boolean isNewest =
                 bean.getNiceDate().contains("小时") || bean.getNiceDate().contains("分钟");
-        String textStr =bean.getTitle()
+        String textStr = bean.getTitle()
                 .replaceAll("&ldquo;", "\"")
                 .replaceAll("&rdquo;", "\"")
                 .replaceAll("&mdash;", "—")
@@ -49,7 +52,8 @@ public class HotSearchListAdapter extends CommonAdapter<ArticleListBean> {
                 .setImageResource(R.id.imv_like, bean.isCollect() ?
                         R.drawable.icon_like :
                         R.drawable.icon_unlike)
-                .setOnClickListener(R.id.imv_like, v -> {//收藏和取消收藏
+                .setOnClickListener(R.id.imv_like, v -> {
+                    //收藏和取消收藏
                     if (bean.isCollect()) {
                         mPresenter.unCollectArticle(bean.getId(),
                                 bean.getTitle(),
@@ -64,7 +68,7 @@ public class HotSearchListAdapter extends CommonAdapter<ArticleListBean> {
                 .setOnClickListener(R.id.tv_project, v -> {
                     Intent intent = new Intent(mContext, X5WebView.class);
                     intent.putExtra("mUrl",
-                            HttpManager.BASE_URL + bean.getTags().get(0).getUrl());
+                            Constants.BASE_URL + bean.getTags().get(0).getUrl());
                     intent.putExtra("mTitle", bean.getTags().get(0).getName());
                     mContext.startActivity(intent);
                 });

@@ -14,7 +14,9 @@ import com.bumptech.glide.request.target.ImageViewTarget;
 /**
  * Created by hzy on 2019/1/10
  * 图片加载
- **/
+ *
+ * @author Administrator
+ */
 public class ImageLoaderUtil {
 
     /**
@@ -22,10 +24,9 @@ public class ImageLoaderUtil {
      */
     public static void LoadCircleImage(Context context, Object url, ImageView imageView) {
         Glide.with(context).load(url)
-                .apply(new RequestOptions()
-                        .centerCrop()
-                        .circleCropTransform()
+                .apply(RequestOptions.centerCropTransform()
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
+                .apply(RequestOptions.circleCropTransform())
                 .transition(new DrawableTransitionOptions().crossFade(800))
                 .into(imageView);
     }

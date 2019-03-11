@@ -7,6 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+/**
+ * MyPagerAdapter fragment切换Adapter
+ * @author Administrator
+ */
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mFragments;

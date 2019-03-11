@@ -2,7 +2,9 @@ package com.hzy.wanandroid.http;
 
 /**
  * Created by hzy on 2019/1/23
- **/
+ *
+ * @author Administrator
+ * */
 public class ResponseBean<T> {
 
     private Float errorCode;

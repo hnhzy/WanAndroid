@@ -20,17 +20,31 @@ import butterknife.Unbinder;
 /**
  * Created by hzy on 2019/1/18
  * MVC BaseFragment 一些简单的页面依然使用mvc实现
- **/
+ *
+ * @author Administrator
+ *
+ * */
 public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected Unbinder unbinder;
     protected View mRootView, mErrorView, mEmptyView;
     protected KProgressHUD mKProgressHUD;
 
+    /**
+     * getLayoutId
+     * @return
+     */
     protected abstract int getLayoutId();
 
+    /**
+     * initView
+     * @param view
+     */
     protected abstract void initView(View view);
 
+    /**
+     * initData
+     */
     protected abstract void initData();
 
 

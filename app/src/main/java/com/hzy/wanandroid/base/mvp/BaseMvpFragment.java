@@ -25,7 +25,10 @@ import io.reactivex.annotations.Nullable;
  * Created by hzy on 2019/1/17
  * <p>
  * MVP BaseMvpFragment
- **/
+ *
+ * @author Administrator
+ *
+ * */
 public abstract class BaseMvpFragment<T extends BasePersenter> extends Fragment implements BaseView {
     @Inject
     @Nullable

@@ -10,12 +10,20 @@ import java.util.List;
 
 /**
  * Created by hzy on 2018/7/7
- **/
+ *
+ * @author hzy
+ *
+ * */
 public class FlowLayout extends ViewGroup {
 
-    // 每一行view的集合
+    /**
+     * 每一行view的集合
+     */
     private List<List<View>> mAllViews   = new ArrayList<>();
-    // 每一行的高度
+
+    /**
+     * 每一行的高度
+     */
     private List<Integer>    mLineHeight = new ArrayList<>();
 
     public FlowLayout(Context context) {

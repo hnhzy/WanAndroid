@@ -9,6 +9,9 @@ import com.hzy.wanandroid.dragger.FragmentScope;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * @author Administrator
+ */
 @Module
 public class FragmentModule {
 

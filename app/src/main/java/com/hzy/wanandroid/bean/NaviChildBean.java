@@ -3,8 +3,10 @@ package com.hzy.wanandroid.bean;
 import java.util.List;
 
 /**
- * Created by hzy on 2019/1/25
- **/
+ * Created by hzy on 2019/1/24
+ *
+ * @author hzy
+ * */
 public class NaviChildBean {
     /**
      * apkLink :

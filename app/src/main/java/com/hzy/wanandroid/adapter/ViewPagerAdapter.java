@@ -8,6 +8,9 @@ import android.support.v4.view.PagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mFragments;

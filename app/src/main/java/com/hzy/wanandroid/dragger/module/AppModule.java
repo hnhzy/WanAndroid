@@ -10,6 +10,9 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * @author Administrator
+ */
 @Module
 public class AppModule {
     private final App application;

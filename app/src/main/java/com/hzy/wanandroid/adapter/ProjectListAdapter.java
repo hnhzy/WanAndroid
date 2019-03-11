@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ProjectListBean;
-import com.hzy.wanandroid.fragment.project_list.ProjectListPresenter;
+import com.hzy.wanandroid.ui.fragment.project.projectlist.ProjectListPresenter;
 import com.hzy.wanandroid.utils.ImageLoaderUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -13,7 +13,10 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- **/
+ * ProjectListAdapter  项目列表
+ * @author Administrator
+ *
+ * */
 public class ProjectListAdapter extends CommonAdapter<ProjectListBean.DatasBean> {
 
     private Context mContext;

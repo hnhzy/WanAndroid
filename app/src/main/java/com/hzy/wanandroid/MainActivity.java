@@ -23,20 +23,20 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.adapter.ViewPagerAdapter;
 import com.hzy.wanandroid.base.mvc.BaseActivity;
 import com.hzy.wanandroid.config.Constants;
-import com.hzy.wanandroid.fragment.home.HomeFragment;
-import com.hzy.wanandroid.fragment.navi.NaviFragment;
-import com.hzy.wanandroid.fragment.project.ProjectFragment;
-import com.hzy.wanandroid.fragment.public_address.PublicAddrFragment;
-import com.hzy.wanandroid.fragment.system.SystemFragment;
 import com.hzy.wanandroid.service.ApiService;
-import com.hzy.wanandroid.ui.SupportWebActivity;
-import com.hzy.wanandroid.ui.X5WebView;
-import com.hzy.wanandroid.ui.article_search.ArticleSearchActivity;
-import com.hzy.wanandroid.ui.freq_web.FreqWebActivity;
-import com.hzy.wanandroid.ui.login.LoginActivity;
-import com.hzy.wanandroid.ui.mycollect.MyCollectActivity;
-import com.hzy.wanandroid.ui.search.SearchActivity;
-import com.hzy.wanandroid.ui.todo.ToDoActivity;
+import com.hzy.wanandroid.ui.activity.SupportWebActivity;
+import com.hzy.wanandroid.ui.activity.X5WebView;
+import com.hzy.wanandroid.ui.activity.artsearch.ArticleSearchActivity;
+import com.hzy.wanandroid.ui.activity.freqweb.FreqWebActivity;
+import com.hzy.wanandroid.ui.activity.login.LoginActivity;
+import com.hzy.wanandroid.ui.activity.mycollect.MyCollectActivity;
+import com.hzy.wanandroid.ui.activity.pubsearch.SearchActivity;
+import com.hzy.wanandroid.ui.activity.todo.ToDoActivity;
+import com.hzy.wanandroid.ui.fragment.home.HomeFragment;
+import com.hzy.wanandroid.ui.fragment.navi.NaviFragment;
+import com.hzy.wanandroid.ui.fragment.project.profragment.ProjectFragment;
+import com.hzy.wanandroid.ui.fragment.system.sysfragment.SystemFragment;
+import com.hzy.wanandroid.ui.fragment.wxpulic.address.PublicAddrFragment;
 import com.hzy.wanandroid.utils.ImageLoaderUtil;
 import com.hzy.wanandroid.utils.RxSchedulers;
 import com.hzy.wanandroid.utils.SharedPreferencesUtil;
@@ -208,11 +208,6 @@ public class MainActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
-    }
-
-    @Override
-    protected void initSlidable() {
-        // 禁止滑动返回
     }
 
     /**

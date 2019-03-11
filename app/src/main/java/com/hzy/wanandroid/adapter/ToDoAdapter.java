@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ToDoBean;
-import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
-import com.hzy.wanandroid.ui.todo.fragment.todofragment.ToDoPresenter;
+import com.hzy.wanandroid.ui.activity.todo.add.AddToDoActivity;
+import com.hzy.wanandroid.ui.activity.todo.todofragment.ToDoPresenter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 

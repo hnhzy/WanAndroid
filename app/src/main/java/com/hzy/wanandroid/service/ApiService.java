@@ -29,7 +29,9 @@ import retrofit2.http.Query;
 /**
  * Created by hzy on 2019/1/10
  * ApiService
- **/
+ *
+ * @author Administrator
+ * */
 public interface ApiService {
 
     //############################公众号############################################################

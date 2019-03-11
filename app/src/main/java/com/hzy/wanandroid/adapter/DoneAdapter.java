@@ -10,18 +10,16 @@ import android.widget.TextView;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ToDoBean;
-import com.hzy.wanandroid.ui.addtodo.AddToDoActivity;
-import com.hzy.wanandroid.ui.todo.fragment.donefragment.DonePresenter;
+import com.hzy.wanandroid.ui.activity.todo.add.AddToDoActivity;
+import com.hzy.wanandroid.ui.activity.todo.donefragment.DonePresenter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 /**
  * Created by hzy on 2019/1/24
- *
+ * DoneAdapter todo已完成Adapter
  * @author hzy
  */
 public class DoneAdapter extends CommonAdapter<List<ToDoBean>> {

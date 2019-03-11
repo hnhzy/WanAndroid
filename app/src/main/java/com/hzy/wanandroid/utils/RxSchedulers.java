@@ -8,7 +8,10 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by hzy on 2019/1/10
  * 线程调度
- **/
+ *
+ * @author Administrator
+ *
+ * */
 public class RxSchedulers {
 
     final static ObservableTransformer Stf = upstream -> upstream.subscribeOn(Schedulers.newThread())

@@ -2,7 +2,9 @@ package com.hzy.wanandroid.bean;
 
 /**
  * Created by hzy on 2019/1/24
- **/
+ *
+ * @author hzy
+ * */
 public class TagsBean {
 
     /**

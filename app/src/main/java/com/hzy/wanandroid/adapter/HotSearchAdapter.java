@@ -11,14 +11,14 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- * SubSysAdapter
- **/
+ * HotSearchAdapter  热门搜索
+ *
+ * @author Administrator
+ */
 public class HotSearchAdapter extends CommonAdapter<HotSearchBean> {
-    private Context mContext;
 
     public HotSearchAdapter(Context context, List<HotSearchBean> datas) {
         super(context, R.layout.item_navi_grid, datas);
-        mContext = context;
     }
 
     @Override

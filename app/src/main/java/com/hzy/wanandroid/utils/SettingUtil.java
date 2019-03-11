@@ -8,9 +8,7 @@ import com.blankj.utilcode.util.NetworkUtils;
 import com.hzy.wanandroid.App;
 import com.hzy.wanandroid.R;
 
-/**
- * Created by Meiji on 2017/2/20.
- */
+
 
 public class SettingUtil {
 

@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.hzy.wanandroid.R;
 
 
+/**
+ * @author hzy
+ */
 public class TitleBarLayout extends LinearLayout {
     RelativeLayout rlActionbar;
     ImageView ivLeft;
@@ -46,12 +49,12 @@ public class TitleBarLayout extends LinearLayout {
     private void init() {
         inflate(getContext(), R.layout.view_title_bar, this);
 
-        rlActionbar = (RelativeLayout) findViewById(R.id.rl_actionbar);
-        ivLeft = (ImageView) findViewById(R.id.iv_left);
-        tvLeft = (TextView) findViewById(R.id.tv_left);
-        tvCenter = (TextView) findViewById(R.id.tv_center);
-        ivRight = (ImageView) findViewById(R.id.iv_right);
-        tvRight = (TextView) findViewById(R.id.tv_right);
+        rlActionbar = findViewById(R.id.rl_actionbar);
+        ivLeft = findViewById(R.id.iv_left);
+        tvLeft = findViewById(R.id.tv_left);
+        tvCenter = findViewById(R.id.tv_center);
+        ivRight = findViewById(R.id.iv_right);
+        tvRight = findViewById(R.id.tv_right);
         dividerView = findViewById(R.id.divider_view);
     }
 
@@ -121,7 +124,7 @@ public class TitleBarLayout extends LinearLayout {
         tvLeft.setVisibility(View.VISIBLE);
     }
 
-    public void setLeftTextColor(@ColorInt int color){
+    public void setLeftTextColor(@ColorInt int color) {
         tvLeft.setTextColor(color);
     }
 
@@ -156,7 +159,7 @@ public class TitleBarLayout extends LinearLayout {
         tvRight.setVisibility(View.VISIBLE);
     }
 
-    public void setRightTextColor(@ColorInt int color){
+    public void setRightTextColor(@ColorInt int color) {
         tvRight.setTextColor(color);
     }
 

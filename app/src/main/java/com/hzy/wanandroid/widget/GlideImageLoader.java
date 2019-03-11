@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.youth.banner.loader.ImageLoader;
 
+/**
+ * @author hzy
+ */
 public class GlideImageLoader extends ImageLoader {
 
     @Override

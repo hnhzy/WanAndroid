@@ -17,19 +17,20 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 
  * SharedPreferences 工具类
+ *
+ * @author hzy
  */
 public class SharedPreferencesUtil {
- 
- 
+
+
     private static SharedPreferencesUtil util;
     private static SharedPreferences sp;
- 
+
     private SharedPreferencesUtil(Context context, String name) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
     }
- 
+
     /**
      * 初始化SharedPreferencesUtil,只需要初始化一次，建议在Application中初始化
      *
@@ -41,7 +42,7 @@ public class SharedPreferencesUtil {
             util = new SharedPreferencesUtil(context, name);
         }
     }
- 
+
     /**
      * 保存数据到SharedPreferences
      *
@@ -84,7 +85,7 @@ public class SharedPreferencesUtil {
         editor.apply();
         return result;
     }
- 
+
     /**
      * 获取SharedPreferences中保存的数据
      *
@@ -128,7 +129,7 @@ public class SharedPreferencesUtil {
         }
         return result;
     }
- 
+
     /**
      * 用于保存集合
      *
@@ -185,7 +186,7 @@ public class SharedPreferencesUtil {
         editor.apply();
         return result;
     }
- 
+
     /**
      * 获取保存的List
      *
@@ -204,7 +205,7 @@ public class SharedPreferencesUtil {
         }
         return list;
     }
- 
+
     /**
      * 用于保存集合
      *
@@ -227,7 +228,7 @@ public class SharedPreferencesUtil {
         editor.apply();
         return result;
     }
- 
+
     /**
      * 用于保存集合
      *

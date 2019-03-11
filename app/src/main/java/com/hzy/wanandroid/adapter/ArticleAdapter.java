@@ -5,9 +5,9 @@ import android.content.Intent;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ArticleListBean;
-import com.hzy.wanandroid.fragment.home.HomePresenter;
-import com.hzy.wanandroid.http.HttpManager;
-import com.hzy.wanandroid.ui.X5WebView;
+import com.hzy.wanandroid.config.Constants;
+import com.hzy.wanandroid.ui.activity.X5WebView;
+import com.hzy.wanandroid.ui.fragment.home.HomePresenter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- *
+ *  ArticleAdapter 首页文章Adapter
  * @author hzy
  */
 public class ArticleAdapter extends CommonAdapter<ArticleListBean> {
@@ -58,7 +58,7 @@ public class ArticleAdapter extends CommonAdapter<ArticleListBean> {
                 .setOnClickListener(R.id.tv_project, v -> {
                     Intent intent = new Intent(mContext, X5WebView.class);
                     intent.putExtra("mUrl",
-                            HttpManager.BASE_URL + articleListBean.getTags().get(0).getUrl());
+                            Constants.BASE_URL + articleListBean.getTags().get(0).getUrl());
                     intent.putExtra("mTitle", articleListBean.getTags().get(0).getName());
                     mContext.startActivity(intent);
                 });

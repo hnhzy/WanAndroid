@@ -3,7 +3,10 @@ package com.hzy.wanandroid.base.mvp;
 /**
  * Created by hzy on 2019/1/23
  * BaseView
- **/
+ *
+ * @author hzy
+ *
+ * */
 public interface BaseView {
 
     /**

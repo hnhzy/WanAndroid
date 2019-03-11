@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.PubAddrListChild;
-import com.hzy.wanandroid.fragment.PubList.PubListPresenter;
+import com.hzy.wanandroid.ui.fragment.wxpulic.addrlist.PubListPresenter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -12,15 +12,16 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- **/
+ *
+ * @author Administrator
+ */
 public class PubAddrAdapter extends CommonAdapter<PubAddrListChild> {
-    private Context mContext;
+
     private PubListPresenter mPresenter;
 
     public PubAddrAdapter(Context context, List<PubAddrListChild> datas,
                           PubListPresenter mPresenter) {
         super(context, R.layout.item_pub_addr, datas);
-        mContext = context;
         this.mPresenter = mPresenter;
     }
 
