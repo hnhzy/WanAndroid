@@ -314,7 +314,6 @@ public interface ApiService {
      * @param content  新增详情（必须）
      * @param date     2018-08-01 预定完成时间（不传默认当天，建议传）
      * @param type     大于0的整数（可选）；
-     * @param priority 大于0的整数（可选）；
      * @return
      */
     @FormUrlEncoded

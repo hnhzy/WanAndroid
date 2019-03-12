@@ -23,8 +23,7 @@ import yanzhikai.textpath.painter.PenPainter;
  * SplashActivity 启动界面
  *
  * @author hzy
- *
- * */
+ */
 public class SplashActivity extends BaseActivity {
 
     /**
@@ -77,14 +76,15 @@ public class SplashActivity extends BaseActivity {
          */
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions
-                .request(Manifest.permission.WRITE_SETTINGS)
+                .request(Manifest.permission.WRITE_SETTINGS, Manifest.permission.ACCESS_WIFI_STATE)
                 .subscribe(granted -> {
                     if (granted) {
                         // Always true pre-M
                         // I can control the camera now
                     } else {
                         // Oups permission denied
-                        rxPermissions.request(Manifest.permission.WRITE_SETTINGS);
+                        rxPermissions.request(Manifest.permission.WRITE_SETTINGS,
+                                Manifest.permission.ACCESS_WIFI_STATE);
                     }
                 });
     }

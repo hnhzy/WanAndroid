@@ -16,6 +16,7 @@ import com.hzy.wanandroid.base.mvp.BaseMvpFragment;
 import com.hzy.wanandroid.bean.KnowledgeSystem;
 import com.hzy.wanandroid.bean.KnowledgeSystemChildBean;
 import com.hzy.wanandroid.bean.SystemDataChildBean;
+import com.hzy.wanandroid.http.ResponseBean;
 import com.hzy.wanandroid.ui.activity.X5WebView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -190,4 +191,20 @@ public class SubSystemFragment extends BaseMvpFragment<SubSysPresenter> implemen
         mListlist.addAll(mKnowledgeSystem.getDatas());
         mListAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void updateCollect(ResponseBean responseBean, int position) {
+        ToastUtils.showShort("收藏成功");
+        mListlist.get(position).setCollect(true);
+        mListAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void updateUnCollect(ResponseBean responseBean, int position) {
+        ToastUtils.showShort("取消收藏成功");
+        mListlist.get(position).setCollect(false);
+        mListAdapter.notifyItemChanged(position);
+    }
+
+
 }

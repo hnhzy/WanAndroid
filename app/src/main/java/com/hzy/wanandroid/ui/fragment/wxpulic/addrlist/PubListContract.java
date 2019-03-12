@@ -22,8 +22,8 @@ public interface PubListContract {
 
     interface Presenter extends BasePersenter<View> {
         void getList(int id, int page);
-        void collectArticle(String title, String author, String link, int position);
-        void unCollectArticle(int id, String title, String author, String link, int position);
+        void collectArticle(int id,int position);
+        void unCollectArticle(int id,int position);
     }
 
 }

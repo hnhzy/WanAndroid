@@ -3,11 +3,14 @@ package com.hzy.wanandroid.adapter;
 import android.content.Context;
 import android.content.Intent;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ArticleListBean;
 import com.hzy.wanandroid.config.Constants;
 import com.hzy.wanandroid.ui.activity.X5WebView;
+import com.hzy.wanandroid.ui.activity.login.LoginActivity;
 import com.hzy.wanandroid.ui.fragment.home.HomePresenter;
+import com.hzy.wanandroid.utils.SharedPreferencesUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -15,18 +18,17 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- *  ArticleAdapter 首页文章Adapter
+ * ArticleAdapter 首页文章Adapter
+ *
  * @author hzy
  */
 public class ArticleAdapter extends CommonAdapter<ArticleListBean> {
 
-    private Context mContext;
     private HomePresenter mPresenter;
 
     public ArticleAdapter(Context context, List<ArticleListBean> datas,
                           HomePresenter mPresenter) {
         super(context, R.layout.item_article, datas);
-        mContext = context;
         this.mPresenter = mPresenter;
     }
 
@@ -49,6 +51,11 @@ public class ArticleAdapter extends CommonAdapter<ArticleListBean> {
                         R.drawable.icon_unlike)
                 //收藏和取消收藏
                 .setOnClickListener(R.id.imv_like, v -> {
+                    if (!(boolean)SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
+                        ToastUtils.showShort("请先登录");
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                        return;
+                    }
                     if (articleListBean.isCollect()) {
                         mPresenter.unCollectArticle(articleListBean.getId(), position);
                     } else {

@@ -8,7 +8,9 @@ package com.hzy.wanandroid.config;
  * */
 public class Constants {
 
-    public static final String BASE_URL = "http://www.wanandroid.com";
+//    public static final String BASE_URL = "http://www.wanandroid.com";
+
+    public static final String BASE_URL = "https://www.wanandroid.com";
 
     /**
      * 判断是否登录

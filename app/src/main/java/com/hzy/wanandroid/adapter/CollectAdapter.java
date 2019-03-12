@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ArticleListBean;
 import com.hzy.wanandroid.config.Constants;
 import com.hzy.wanandroid.ui.activity.X5WebView;
+import com.hzy.wanandroid.ui.activity.login.LoginActivity;
 import com.hzy.wanandroid.ui.activity.mycollect.MyCollectPresenter;
+import com.hzy.wanandroid.utils.SharedPreferencesUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -16,7 +19,8 @@ import java.util.List;
 
 /**
  * Created by hzy on 2019/1/24
- *  收藏 Adapter
+ * 收藏 Adapter
+ *
  * @author Administrator
  */
 public class CollectAdapter extends CommonAdapter<ArticleListBean> {
@@ -45,6 +49,11 @@ public class CollectAdapter extends CommonAdapter<ArticleListBean> {
                 .setImageResource(R.id.imv_like, R.drawable.icon_like)
                 //取消收藏
                 .setOnClickListener(R.id.imv_like, v -> {
+                    if (!(boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
+                        ToastUtils.showShort("请先登录");
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                        return;
+                    }
                     mPresenter.unCollectArticle(articleListBean.getId(),
                             TextUtils.isEmpty(articleListBean.getOrigin()) ? "-1" :
                                     articleListBean.getOrigin(), position);

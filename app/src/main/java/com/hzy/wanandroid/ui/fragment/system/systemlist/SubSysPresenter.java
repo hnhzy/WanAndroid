@@ -36,5 +36,32 @@ public class SubSysPresenter extends BasePAV<SubSysContract.View> implements Sub
                 });
     }
 
+    @Override
+    public void collectArticle(int id, int position) {
+        App.apiService(ApiService.class)
+                .insideCollect(id)
+                .compose(RxSchedulers.io_main())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
+                .subscribe(responseBean -> {
+                    mView.updateCollect(responseBean, position);
+                }, throwable -> {
+                    mView.onFail();
+                });
+    }
+
+    @Override
+    public void unCollectArticle(int id, int position) {
+        App.apiService(ApiService.class)
+                .articleListUncollect(id)
+                .compose(RxSchedulers.io_main())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
+                .subscribe(responseBean -> {
+                    mView.updateUnCollect(responseBean, position);
+                }, throwable -> {
+                    mView.onFail();
+                });
+    }
+
+
 
 }

@@ -266,7 +266,7 @@ public class MainActivity extends BaseActivity
                 break;
             case R.id.nav_tools:
                 Intent intent = new Intent(this, X5WebView.class);
-                intent.putExtra("mUrl", "http://www.wanandroid.com/tools");
+                intent.putExtra("mUrl", Constants.BASE_URL+"/tools");
                 intent.putExtra("mTitle", "常用工具");
                 startActivity(intent);
                 break;

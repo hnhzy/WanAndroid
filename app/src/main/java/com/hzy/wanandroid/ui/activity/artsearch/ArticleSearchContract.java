@@ -26,8 +26,8 @@ public interface ArticleSearchContract {
     interface Presenter extends BasePersenter<View> {
         void getData(int page, String k);
         void getGridData();
-        void collectArticle(String title, String author, String link, int position);
-        void unCollectArticle(int id, String title, String author, String link, int position);
+        void collectArticle(int id, int position);
+        void unCollectArticle(int id, int position);
     }
 
 }

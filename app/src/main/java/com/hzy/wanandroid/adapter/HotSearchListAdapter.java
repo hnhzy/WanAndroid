@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.bean.ArticleListBean;
 import com.hzy.wanandroid.config.Constants;
 import com.hzy.wanandroid.ui.activity.X5WebView;
 import com.hzy.wanandroid.ui.activity.artsearch.ArticleSearchPresenter;
+import com.hzy.wanandroid.ui.activity.login.LoginActivity;
+import com.hzy.wanandroid.utils.SharedPreferencesUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -53,16 +56,16 @@ public class HotSearchListAdapter extends CommonAdapter<ArticleListBean> {
                         R.drawable.icon_like :
                         R.drawable.icon_unlike)
                 .setOnClickListener(R.id.imv_like, v -> {
-                    //收藏和取消收藏
+
+                    if ((boolean) SharedPreferencesUtil.getData(Constants.ISLOGIN, false)) {
+                        ToastUtils.showShort("请先登录");
+                        mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                        return;
+                    }
                     if (bean.isCollect()) {
-                        mPresenter.unCollectArticle(bean.getId(),
-                                bean.getTitle(),
-                                bean.getAuthor(),
-                                bean.getLink(), position);
+                        mPresenter.unCollectArticle(bean.getId(), position);
                     } else {
-                        mPresenter.collectArticle(bean.getTitle(),
-                                bean.getAuthor(),
-                                bean.getLink(), position);
+                        mPresenter.collectArticle(bean.getId(), position);
                     }
                 })
                 .setOnClickListener(R.id.tv_project, v -> {

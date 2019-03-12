@@ -22,7 +22,7 @@ public interface ProjectListContract {
 
     interface Presenter extends BasePersenter<View> {
         void getProjectList(int page, int cid);
-        void collectArticle(String title, String author, String link, int position);
-        void unCollectArticle(int id, String title, String author, String link, int position);
+        void collectArticle(int id,int position);
+        void unCollectArticle(int id,int position);
     }
 }

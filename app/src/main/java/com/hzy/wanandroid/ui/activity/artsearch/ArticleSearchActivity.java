@@ -92,7 +92,7 @@ public class ArticleSearchActivity extends BaseMvpActivity<ArticleSearchPresente
          */
         //发现执行了两次因为onkey事件包含了down和up事件，所以只需要加入其中一个即可。
         mEtSearch.setOnKeyListener((v, keyCode, event) -> {
-            if (keyCode == event.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                 // 先隐藏键盘
                 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
                         .hideSoftInputFromWindow(ArticleSearchActivity.this.getCurrentFocus()
