@@ -15,6 +15,7 @@ import com.hzy.wanandroid.R;
 import com.hzy.wanandroid.base.mvp.BaseMvpActivity;
 import com.hzy.wanandroid.bean.ToDoBean;
 import com.hzy.wanandroid.http.ResponseBean;
+import com.hzy.wanandroid.widget.ClearEditText;
 import com.hzy.wanandroid.widget.TitleBarLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -40,10 +41,10 @@ public class AddToDoActivity extends BaseMvpActivity<AddToDoPresenter> implement
     TitleBarLayout mTitleBar;
 
     @BindView(R.id.et_title)
-    EditText mEtTitle;
+    ClearEditText mEtTitle;
 
     @BindView(R.id.et_content)
-    EditText mEtContent;
+    ClearEditText mEtContent;
 
     @BindView(R.id.tv_time)
     TextView mTvTime;
@@ -137,10 +138,12 @@ public class AddToDoActivity extends BaseMvpActivity<AddToDoPresenter> implement
 
     @Override
     public void addView(ResponseBean responseBean) {
+        if (responseBean.getErrorCode() == 0) {
         ToastUtils.showShort("添加清单成功");
         mToDoBean.setWhere("AddToDoActivity");
         EventBus.getDefault().post(mToDoBean);
         finish();
+        }
     }
 
     @Override

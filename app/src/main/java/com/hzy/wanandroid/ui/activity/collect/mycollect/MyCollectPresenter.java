@@ -1,4 +1,4 @@
-package com.hzy.wanandroid.ui.activity.mycollect;
+package com.hzy.wanandroid.ui.activity.collect.mycollect;
 
 import android.arch.lifecycle.LifecycleOwner;
 

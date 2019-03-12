@@ -6,9 +6,10 @@ import android.app.Activity;
 import com.hzy.wanandroid.dragger.ActivityScope;
 import com.hzy.wanandroid.dragger.module.ActivityModule;
 import com.hzy.wanandroid.ui.activity.artsearch.ArticleSearchActivity;
+import com.hzy.wanandroid.ui.activity.collect.addcollect.AddCollectActivity;
+import com.hzy.wanandroid.ui.activity.collect.mycollect.MyCollectActivity;
 import com.hzy.wanandroid.ui.activity.freqweb.FreqWebActivity;
 import com.hzy.wanandroid.ui.activity.login.LoginActivity;
-import com.hzy.wanandroid.ui.activity.mycollect.MyCollectActivity;
 import com.hzy.wanandroid.ui.activity.pubsearch.SearchActivity;
 import com.hzy.wanandroid.ui.activity.register.RegisterActivity;
 import com.hzy.wanandroid.ui.activity.todo.add.AddToDoActivity;
@@ -37,4 +38,6 @@ public interface ActivityComponent {
     void inject(MyCollectActivity myCollectActivity);
 
     void inject(AddToDoActivity addToDoActivity);
+
+    void inject(AddCollectActivity addCollectActivity);
 }

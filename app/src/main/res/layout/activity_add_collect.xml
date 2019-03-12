@@ -42,8 +42,8 @@
         android:layout_marginBottom="10dp"
         android:background="@color/c_999999" />
 
-    <TextView
-        android:id="@+id/tv_time"
+    <com.hzy.wanandroid.widget.ClearEditText
+        android:id="@+id/et_author"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="27dp"
@@ -52,7 +52,7 @@
         android:drawableLeft="@mipmap/mima"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="请选择时间"
+        android:hint="请输入作者"
         android:paddingLeft="2dp"
         android:singleLine="true"
         android:text=""
@@ -69,7 +69,7 @@
 
 
     <com.hzy.wanandroid.widget.ClearEditText
-        android:id="@+id/et_content"
+        android:id="@+id/et_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="27dp"
@@ -79,8 +79,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="left|top"
-        android:hint="请输入详情（非必填）"
-        android:lines="5"
+        android:hint="请输入链接地址"
+        android:lines="2"
         android:padding="@dimen/dp_10"
         android:paddingLeft="2dp"
         android:text=""

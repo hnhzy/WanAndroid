@@ -27,7 +27,11 @@
             android:name=".ui.activity.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.mycollect.MyCollectActivity"
+            android:name=".ui.activity.collect.mycollect.MyCollectActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.collect.addcollect.AddCollectActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity

@@ -1,4 +1,4 @@
-package com.hzy.wanandroid.ui.activity.mycollect;
+package com.hzy.wanandroid.ui.activity.collect.mycollect;
 
 import com.hzy.wanandroid.base.mvp.BasePersenter;
 import com.hzy.wanandroid.base.mvp.BaseView;

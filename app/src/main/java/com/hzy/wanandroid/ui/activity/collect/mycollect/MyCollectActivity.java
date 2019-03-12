@@ -1,4 +1,4 @@
-package com.hzy.wanandroid.ui.activity.mycollect;
+package com.hzy.wanandroid.ui.activity.collect.mycollect;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,6 +16,7 @@ import com.hzy.wanandroid.bean.ArticleBean;
 import com.hzy.wanandroid.bean.ArticleListBean;
 import com.hzy.wanandroid.http.ResponseBean;
 import com.hzy.wanandroid.ui.activity.X5WebView;
+import com.hzy.wanandroid.ui.activity.collect.addcollect.AddCollectActivity;
 import com.hzy.wanandroid.widget.TitleBarLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -72,6 +73,8 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
         mTitleBar.setTitleColor(getResources().getColor(R.color.c_ffffff));
         mTitleBar.setTitle("我的收藏");
         mTitleBar.setLeftBack(v -> finish());
+        mTitleBar.setRightImage(R.drawable.add_icon2,
+                v -> startActivity(new Intent(MyCollectActivity.this, AddCollectActivity.class)));
 
 
         mAdapter = new CollectAdapter(MyCollectActivity.this, mColletList, mPresenter);
@@ -115,6 +118,12 @@ public class MyCollectActivity extends BaseMvpActivity<MyCollectPresenter> imple
                 refreshLayout.finishRefresh();
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         page = 0;
         mPresenter.getData(page);
     }
