@@ -60,14 +60,19 @@ public class SplashActivity extends BaseActivity {
                 super.onAnimationEnd(animation);
                 if (!isCancel) {
                     mStpvWa.showFillColorText();//填充文字颜色
-                    mStpvCbh.stopAnimation();//关闭mStpvCbh动画
-                    mStpvWa.stopAnimation();//关闭mStpvWa动画
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
                 }
             }
         });
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mStpvCbh.stopAnimation();//关闭mStpvCbh动画
+//        mStpvWa.stopAnimation();//关闭mStpvWa动画
+//    }
 
     @Override
     protected void initData() {

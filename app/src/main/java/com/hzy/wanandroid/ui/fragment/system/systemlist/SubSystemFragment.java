@@ -36,7 +36,7 @@ import butterknife.BindView;
  *
  * @author hzy
  */
-public class SubSystemFragment extends BaseMvpFragment<SubSysPresenter> implements SubSysContract.View {
+    public class SubSystemFragment extends BaseMvpFragment<SubSysPresenter> implements SubSysContract.View {
 
     private static final String TAG = "SubSystemFragment";
 

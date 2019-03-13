@@ -87,7 +87,7 @@ public class AddToDoActivity extends BaseMvpActivity<AddToDoPresenter> implement
                 ToastUtils.showShort("请选择时间");
             } else {
                 if (isAdd) {
-                    mToDoBean=new ToDoBean();
+                    mToDoBean = new ToDoBean();
                     mToDoBean.setStatus(0);
                     mToDoBean.setArrowUp(true);
                     mToDoBean.setType(0);
@@ -139,10 +139,10 @@ public class AddToDoActivity extends BaseMvpActivity<AddToDoPresenter> implement
     @Override
     public void addView(ResponseBean responseBean) {
         if (responseBean.getErrorCode() == 0) {
-        ToastUtils.showShort("添加清单成功");
-        mToDoBean.setWhere("AddToDoActivity");
-        EventBus.getDefault().post(mToDoBean);
-        finish();
+            ToastUtils.showShort("添加清单成功");
+            mToDoBean.setWhere("AddToDoActivity");
+            EventBus.getDefault().post(mToDoBean);
+            finish();
         }
     }
 
@@ -160,5 +160,11 @@ public class AddToDoActivity extends BaseMvpActivity<AddToDoPresenter> implement
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
