@@ -4,12 +4,14 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.hzy.wanandroid.config.Constants;
 import com.hzy.wanandroid.dragger.component.AppComponent;
 import com.hzy.wanandroid.dragger.component.DaggerAppComponent;
 import com.hzy.wanandroid.dragger.module.AppModule;
 import com.hzy.wanandroid.http.DevelopmentModeManager;
 import com.hzy.wanandroid.http.HttpManager;
 import com.hzy.wanandroid.utils.SharedPreferencesUtil;
+import com.tencent.bugly.Bugly;
 import com.tencent.smtt.sdk.QbSdk;
 
 /**
@@ -31,6 +33,13 @@ public class App extends MultiDexApplication {
         //初始化网络
         mHttpManager = new HttpManager();
         LoadWebX5();
+
+        /**
+         * Context context,  上下文
+         * String appId,     buglg注册的appId
+         * boolean isDebug   是否开启debug模式，true为是
+         */
+        Bugly.init(getApplicationContext(), Constants.BUGLY_ID, true);
 
         SharedPreferencesUtil.getInstance(this, "WanAndroid");
 
