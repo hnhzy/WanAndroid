@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd-HH-mm-ss", TimeZone.getTimeZone("GMT+08"))
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -17,6 +21,45 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'WanAndroid'
+            keyPassword '123456'
+            storeFile file('../key/key.jks')
+            storePassword '123456'
+        }
+        release {
+            keyAlias 'WanAndroid'
+            keyPassword '123456'
+            storeFile file('../key/key.jks')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileName
+            if (variant.buildType.name == 'release') {
+                fileName = "WanAndroid_${releaseTime()}_${defaultConfig.versionName}.apk"
+            } else {
+                fileName = "WanAndroid_debug.apk"
+            }
+            outputFileName = fileName
         }
     }
 
